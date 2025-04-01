@@ -13,6 +13,7 @@ html.dark{
     background-color: rgb(8, 36, 53);
     color: white;
     padding: 1rem;
+    padding-left: 20%;
     font-family: "Bebas Neue", sans-serif;
     font-size: 3rem;
     width: 100%;
@@ -20,8 +21,10 @@ html.dark{
 
 .navbar{
     display: flex;
+    justify-content: space-between;
     background-color: rgb(8, 36, 53);
-    padding: 1rem 0 0 0;
+    padding: 1rem 20% 0 20%;
+    
 }
 
 .nav-links a{
@@ -40,3 +43,12 @@ html.dark{
 
 
 
+@media (max-width: 768px) {
+    .logo{
+        padding: 1rem;
+    }
+
+    .navbar{
+        padding: 0;
+    }
+}
