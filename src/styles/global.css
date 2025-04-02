@@ -6,7 +6,10 @@ html.dark{
 
 *{
     margin: 0;
+    font-family: "Monserrat", sans-serif;
+    text-decoration: none;
 }
+
 
 /*Logo de la página*/
 .logo{
@@ -19,6 +22,7 @@ html.dark{
     width: 100%;
 }
 
+/*Menú de la página*/
 .navbar{
     display: flex;
     justify-content: space-between;
@@ -30,17 +34,90 @@ html.dark{
 .nav-links a{
     text-decoration: none;
     color: white;
-    font-family: "Monserrat", sans-serif;
     font-weight: bold;
     padding: 1rem;
 }
 
 .nav-links a:hover{
-    color: rgb(8, 36, 53);
+    color: #082435;
     background-color: white;
     border-radius:10% 10% 0 0;
 }
 
+
+/*Footer*/
+.footerContainer{
+    color: white;
+    display: flex;
+    background-color:rgb(8, 36, 53);
+    padding: 1rem 20%;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+    /*FooterNav*/
+.footerNav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid 0.5px white;
+    border-top: none;
+    padding: 1rem 7rem;
+}
+
+.footerNav a{
+    color: white;
+    padding: 5px;
+}
+.footerNav a:hover{
+    color:#6C92EB;
+}
+
+    /*RRSS*/
+.socialMediaContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border: solid 0.5px white;
+    border-top: none;
+    padding: 1rem 7rem;
+}    
+
+.RRSS{
+    background:none;
+    border: solid 3px white;
+    border-radius: 100%;
+    padding: 0.5rem;
+}
+
+.RRSS:hover path{
+    fill: #6C92EB;
+}
+
+.RRSS:hover{
+    border-color: #6C92EB;
+}
+
+    /*Enlaces del footer*/
+.enlacesFooterContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid 0.5px white;
+    border-top: none;
+    padding: 1rem 7rem;
+}
+
+.enlacesFooterContainer a {
+    color: white;
+    padding: 3px;
+}
+.enlacesFooterContainer a:hover{
+    color: #6C92EB;
+}
 
 
 @media (max-width: 768px) {
