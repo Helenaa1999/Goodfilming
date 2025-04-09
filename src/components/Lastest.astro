@@ -9,22 +9,22 @@ const options = {
 
 const res = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=es-ES&page=1', options);
 const data = await res.json();
-const peliculas = data.results;
+const films = data.results;
 
 
 ---
 
-<article class="estrenosContainer">
+<article class="nowPlayingContainer">
     {
-        peliculas.map((peli) => 
+        films.map((film: { poster_path: any; id: any; title: unknown; }) => 
             <div class="filmContainer">
                 <div class="imgYBtn">
-                    <img src={`https://image.tmdb.org/t/p/w200${peli.poster_path}`} alt="{peli.title}">
+                    <img src={`https://image.tmdb.org/t/p/w200${film.poster_path}`} alt="{peli.title}">
                     <div class="btn">
-                        <button>VER MÁS</button>
+                        <a href={`/pelicula/${film.id}`}><button>VER MÁS</button></a>
                     </div>
                 </div>
-                <p>{peli.title}</p>
+                <p>{film.title}</p>
             </div>
     )}
 </article>

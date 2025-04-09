@@ -59,7 +59,7 @@ html.dark{
 
 
 /*Estructura del section de estrenos*/
-.estrenosContainer{
+.nowPlayingContainer{
     display:flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -120,9 +120,11 @@ html.dark{
 }
 
 .btn button:hover{
-    background-color: #082435;
+    background-color: #030b11;
     color: white;
 }
+
+/*Estilos películas estrenos al pulsar ver más*/
 
 
 /*Footer*/
@@ -180,7 +182,7 @@ html.dark{
 }
 
     /*Enlaces del footer*/
-.enlacesFooterContainer{
+.linksFooterContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -189,11 +191,11 @@ html.dark{
     padding: 1rem 7rem;
 }
 
-.enlacesFooterContainer a {
+.linksFooterContainer a {
     color: white;
     padding: 3px;
 }
-.enlacesFooterContainer a:hover{
+.linksFooterContainer a:hover{
     color: #6C92EB;
 }
 
