@@ -1,4 +1,6 @@
 ---
+import Film from "./Film.astro";
+
 const options = {
   method: 'GET',
   headers: {
@@ -17,14 +19,6 @@ const films = data.results;
 <article class="nowPlayingContainer">
     {
         films.map((film: { poster_path: any; id: any; title: unknown; }) => 
-            <div class="filmContainer">
-                <div class="imgYBtn">
-                    <img src={`https://image.tmdb.org/t/p/w200${film.poster_path}`} alt="{peli.title}">
-                    <div class="btn">
-                        <a href={`/pelicula/${film.id}`}><button>VER MÁS</button></a>
-                    </div>
-                </div>
-                <p>{film.title}</p>
-            </div>
+            <Film film={film}/>
     )}
 </article>

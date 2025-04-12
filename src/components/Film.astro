@@ -1,0 +1,16 @@
+---
+
+const {film} = Astro.props;
+
+---
+
+
+<div class="filmContainer">
+    <div class="imgYBtn">
+        <img src={`https://image.tmdb.org/t/p/w200${film.poster_path}`} alt="{peli.title}">
+        <div class="btn">
+            <a href={`/pelicula/${film.id}`}><button>VER MÁS</button></a>
+        </div>
+    </div>
+    <p>{film.title}</p>
+</div>

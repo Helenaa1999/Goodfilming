@@ -186,6 +186,9 @@ body{
 .rating:hover{
     background-color: #071f2e;
 }
+iframe{
+    margin-left: 20%;
+}
 
 
 /*Footer*/
