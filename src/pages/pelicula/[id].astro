@@ -1,6 +1,9 @@
 ---
 //Objeto que contiene valores de segmentos de ruta dinámica que coincidan con esta petición
 import Layout from '../../layouts/Layout.astro';
+import {getVideos} from "../../lib/api/videos.js";
+
+
 export async function getStaticPaths(){
     const res= await fetch (`https://api.themoviedb.org/3/movie/now_playing?api_key=de6d4ae5a295146cc6e2d05c638d7b7c&language=es-ES`);
     const data = await res.json();
@@ -20,17 +23,8 @@ const film = await filmRes.json();
 
 const pageTitle = "Goodfilming -" + film.title;
 
+const videoId = await getVideos(film.title);
 
-const YT_API_KEY = "AIzaSyB_X8Q35iwKpgcXtHanHyq5wRz3nw_C7EU";
-const ytQuery = encodeURIComponent(`${film.title} trailer español`);
-const ytUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${ytQuery}&type=video&key=${YT_API_KEY}&maxResults=1`;
-
-const ytRes = await fetch (ytUrl);
-const ytData = await ytRes.json();
-let videoId = null;
-if(ytData.items && ytData.items.length >0){
-    videoId= ytData.items[0].id.videoId;
-}
 
 
 const vote_average = film.vote_average;
@@ -73,7 +67,7 @@ let vote_averageParaMostrar = Math.round(vote_average*10)/10;
 <script>
     document.addEventListener('DOMContentLoaded', function(){
         var overview = document.querySelector(".overview");
-        if(!overview?.textContent?.trim()){
+        if(overview && !overview?.textContent?.trim()){
             overview.textContent = "--------------------------------------------------------------- Sinopsis no disponible --------------------------------------------------------------";
         }
     });
