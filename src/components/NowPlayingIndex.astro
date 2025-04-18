@@ -4,20 +4,50 @@ import Film from "./Film.astro";
 import { getNowPlaying } from "../lib/api/movies";
 const films = await getNowPlaying();
 ---
-
-<div class="carrousel">
-    <div class="carrousel-track">
-        {films.map((film: {poster_path : any; id: any; title: unknown}) =>(
-            <Film film={film} class="carrousel-item"/>
-        ))}
+<div class="carrouselContainer">
+    <a href="/nowPlayingPage">Estrenos:</a>
+    <div class="carrousel">
+        <div class="carrousel-track">
+            {films.map((film: {poster_path : any; id: any; title: unknown}) =>(
+                <Film film={film} class="carrousel-item"/>
+            ))}
+        </div>
     </div>
+    
+    <button class="carrousel-button prev">&#10094;</button>
+    <button class="carrousel-button next">&#10095;</button>
+    
+
 </div>
 
-<button class="carrousel-button prev">&#10094;</button>
-<button class="carrousel-button next">&#10095;</button>
+<!--Is browser es para que se cargue en el navegador porque de forma automática sólo carga las partes estáticas -->
+<script client:load>
+document.addEventListener("DOMContentLoaded", function() {
+    let currentSlide=0;
+    const track = document.querySelector(".carrousel-track");
+    const slides = document.querySelectorAll(".carrousel-item");
+    const dots = document.querySelectorAll(".dot");
+    const itemPerSlide = 4;
 
-<div class="carrousel-dots">
-    <span class="dot active" data-index="0"></span>
-    <span class="dot" data-index="1"></span>
-    <span class="dot" data-index="2"></span>
-</div>
+    function updateCarrousel(index){
+        currentSlide = index;
+        const offset = -(index * (100/itemPerSlide));
+        track.style.transform = `translateX(${offset}%)`;
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[index].classList.add("active");
+    }
+
+     //El número de items que se van a ver en la pantalla
+    document.querySelector(".prev")?.addEventListener("click", ()=>{
+        const currentIndex = Math.max(currentSlide - itemPerSlide,0)
+        updateCarrousel(currentIndex);
+    });
+
+    document.querySelector(".next")?.addEventListener("click", ()=>{
+        const maxIndex = slides.length - itemPerSlide;
+        const newIndex = Math.min(currentSlide + itemPerSlide, maxIndex);
+        updateCarrousel(newIndex);
+    });
+
+});
+</script>

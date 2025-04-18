@@ -1,11 +1,11 @@
 ---
 
-const {film, class: classname=""} = Astro.props;
+const {film, class: className} = Astro.props;
 
 ---
 
 
-<div class="filmContainer">
+<div class={`filmContainer ${className}`}>
     <div class="imgYBtn">
         <img src={`https://image.tmdb.org/t/p/w200${film.poster_path}`} alt="{peli.title}">
         <div class="btn">

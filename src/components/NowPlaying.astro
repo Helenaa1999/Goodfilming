@@ -10,6 +10,6 @@ const films = await getNowPlaying();
 <article class="nowPlayingContainer">
     {
         films.map((film: { poster_path: any; id: any; title: unknown; }) => 
-            <Film film={film}/>
+            <Film film={film} class="filmContainer"/>
     )}
 </article>

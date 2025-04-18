@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import NowPlayingIndex from "../components/NowPlayingIndex.astro";
+import News from "../components/News.astro";
 
 const pageTitle = "Goodfilming";
 
 ---
 
 <Layout pageTitle={pageTitle}>
+    <News/>
     <NowPlayingIndex/>
 </Layout>

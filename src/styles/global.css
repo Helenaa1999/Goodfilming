@@ -70,43 +70,67 @@ body{
 }
 
 /*Estilos página principal*/
+.carrouselContainer a{
+    font-size: 2rem;
+    text-decoration: none;
+    color:rgb(8, 36, 53);
+    font-weight: bold;
+}
+.carrouselContainer a:hover{
+    color: #6C92EB;
+}
 .carrousel{
     position: relative;
     width: 100%;
-    margin:0 ;
+    margin:25px auto;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px #082435;
+    padding: 2rem 0;
 }
 .carrousel-track{
     display: flex;
+    gap:0.5rem;
     transition: transform 0.5s ease;
 }
 .carrousel-item{
-    min-width: 100%;
-    height: 300px;
-    background-color: #ddd;
+    min-width: calc(100% / 4.4);
+    height: 350px;
+    background-color: #082435;
+    color: #fff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
 }
+.carrousel-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 .carrousel-button{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
+    background-color: #082435;
     color: white;
     border: none;
+    border-radius: 10%;
     padding: 1rem;
     cursor: pointer;
     z-index: 10;
 }
+.carrousel-button:hover{
+    background-color: #6C92EB;
+}
 .carrousel-button.prev{
-    left: 10px;
+    left: 320px;
 }
 .carrousel-button.next{
-    right: 10px;
+    right: 320px;
 }
 .carrousel-dots{
     position: absolute;
@@ -116,16 +140,7 @@ body{
     display: flex;
     gap: 8px;
 }
-.dot{
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 50%;
-    cursor: pointer;
-}
-.dot.active{
-    background-color: #333;
-}
+
 
 /*Estructura del section de estrenos*/
 .nowPlayingContainer{
@@ -374,4 +389,15 @@ iframe{
         gap: 1rem;
     }
     
+    .carrousel-item{
+        min-width: calc(100% / 1);
+    }
+
+    .carrousel-button.prev{
+        left: 10px;
+    }
+    .carrousel-button.next{
+        right: 10px;
+    }
+
 }
