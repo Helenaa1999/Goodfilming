@@ -70,13 +70,13 @@ body{
 }
 
 /*Estilos página principal*/
-.carrouselContainer a{
-    font-size: 2rem;
+.headingsIndex{
+    font-size: 1.5rem;
     text-decoration: none;
     color:rgb(8, 36, 53);
     font-weight: bold;
 }
-.carrouselContainer a:hover{
+.headingsIndex:hover{
     color: #6C92EB;
 }
 .carrousel{
@@ -97,12 +97,13 @@ body{
     min-width: calc(100% / 4.4);
     height: 350px;
     background-color: #082435;
+    border-radius: 10px;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 .carrousel-item img{
     width: 100%;

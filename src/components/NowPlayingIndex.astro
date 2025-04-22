@@ -5,7 +5,7 @@ import { getNowPlaying } from "../lib/api/movies";
 const films = await getNowPlaying();
 ---
 <div class="carrouselContainer">
-    <a href="/nowPlayingPage">Estrenos:</a>
+    <a href="/nowPlayingPage" class="headingsIndex">Estrenos:</a>
     <div class="carrousel">
         <div class="carrousel-track">
             {films.map((film: {poster_path : any; id: any; title: unknown}) =>(
