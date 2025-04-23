@@ -1,10 +1,21 @@
 ---
     import { getNews } from "../lib/api/news";
-import Title from "./Title.astro";
     const news = await getNews();
+
 ---
 
 <div>
-    <img src="{}">
-
+    <h1 class="headings headingSections">Noticias:</h1>
+    <div class="newsContainer">
+        {news.map((newsItem)=>(
+            <article class="articleContainer">
+                <h2><a href={newsItem.link} target="_blank">{newsItem.title}</a></h2>
+                <p>{newsItem.date}</p>
+                <img src={newsItem.imgage} alt="">
+                <p>{newsItem.descripction}</p>
+                <p>Fuente: {newsItem.source}</p>
+                <p><a href={newsItem.link} target="_blank">Enlace</a></p>
+            </article>
+        ))}
+    </div>
 </div>
