@@ -50,6 +50,33 @@ body{
     color: rgb(8, 36, 53);
 }
 
+.btnUp{
+    background-color: rgb(8, 36, 53);
+    color: white;
+    border-radius: 50%;
+    border:#030b11 solid 1px;
+    height: 70px; 
+    width: 70px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    z-index: 1000;
+    transition: 1s;
+    visibility: hidden;
+}
+
+.btnUp:hover{
+    background-color: white;
+    color: rgb(8, 36, 53);
+}
+
+.btnUp.show{
+    opacity: 1;
+    visibility: visible;
+}
+
 /*Logo de la página*/
 .logo{
     background-color: rgb(8, 36, 53);
@@ -189,6 +216,24 @@ body{
     color: rgb(8, 36, 53);
 }
 
+.articleContainer img{
+    border-radius: 10px;
+}
+
+.sourceLink{
+    align-self: center;
+    background-color: rgb(8, 36, 53);
+    text-decoration: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: solid 1px white;
+}
+.sourceLink:hover{
+    background-color: white;
+    color: rgb(8, 36, 53);
+    border: solid 1px rgb(8, 36, 53);
+}
 
 
 /*Estilos del section de estrenos*/

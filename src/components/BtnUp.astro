@@ -1,0 +1,25 @@
+---
+
+---
+
+<div>
+    <button class="btnUp">▲</button>
+</div>
+
+<script>
+    const btn= document.querySelector(".btnUp");
+    window.addEventListener("scroll", function(){
+        if(window.scrollY >100){
+            btn?.classList.add("show");
+        }else{
+            btn?.classList.remove("show");
+        }
+    });
+
+    btn?.addEventListener("click", function(){
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+</script>

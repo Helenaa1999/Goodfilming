@@ -29,17 +29,34 @@ export async function getNews() {
 
     const noticias = feeds.flatMap(feed => {
         if(!feed || !feed.items) return [];
-        return feed.items.map(item =>({
-            id: item.guid || item.link,
-            title: item.title,
-            link:item.link,
-            descripction: item.contentSnippet || item.descripction || "Sin descripción",
-            imgage: item.enclosure ? item.enclosure.url : item.image || item.thumbnail || "https://www.sensacine.com/imagenes/2023/10/03/20231003103219523.jpg",
-            date: item.pubDate,
-            link: item.link,
-            source: feed.title || "Desconocido"
-    }))
+
+        return feed.items.map(item =>{
+            const originalDate = new Date(item.pubDate);
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            };
+
+            const shortDate = new Intl.DateTimeFormat('es-ES', options).format(originalDate);
+            const capitalizedFirstLetter = shortDate.charAt(0).toUpperCase() + shortDate.slice(1);
+            return{
+                id: item.guid || item.link,
+                title: item.title,
+                link:item.link,
+                descripction: item.contentSnippet || item.descripction || "Sin descripción",
+                imgage: item.enclosure ? item.enclosure.url : item.image || item.thumbnail || "https://www.sensacine.com/imagenes/2023/10/03/20231003103219523.jpg",
+                date: capitalizedFirstLetter,
+                source: feed.title || "Desconocido"
+            };
+
+    })
 });
+
 
     noticias.sort((a,b)=>new Date(b.date).getTime() - new Date(a.date).getTime());
 
