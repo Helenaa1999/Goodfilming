@@ -233,6 +233,7 @@ padding: 2rem 0;*/
 .newsContainer{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
