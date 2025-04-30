@@ -230,16 +230,13 @@ body{
 .popularContainer{
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .filmContainerPopular{
+
 }
 
-
-/*display: grid;
-grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-gap: 1rem;
-padding: 2rem 0;*/
 
 /*Estilos de la section de noticias*/
 .newsContainer{
