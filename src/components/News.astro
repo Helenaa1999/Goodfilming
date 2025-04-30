@@ -1,21 +1,14 @@
 ---
-    import { getNews } from "../lib/api/news";
-    const news = await getNews();
-
+    const {newsIndividual, class: className} = Astro.props;
 ---
 
 <div>
-    <h1 class="headings headingSections">Noticias:</h1>
-    <div class="newsContainer">
-        {news.map((newsItem)=>(
-            <article class="articleContainer">
-                <h2><a href={newsItem.link} target="_blank">{newsItem.title}</a></h2>
-                <p>{newsItem.date}</p>
-                <img src={newsItem.imgage} alt="">
-                <p>{newsItem.descripction}</p>
-                <p>Fuente: {newsItem.source}</p>
-                <a class="sourceLink" href={newsItem.link} target="_blank"> 🔗 Enlace a a la noticia completa</a>
-            </article>
-        ))}
-    </div>
+        <article class={`articleContainer ${className}`}>
+            <h2><a href={newsIndividual.link} target="_blank">{newsIndividual.title}</a></h2>
+            <p class="date">{newsIndividual.date}</p>
+            <img src={newsIndividual.image} alt="">
+            <p class="descripction">{newsIndividual.descripction}</p>
+            <p class="source">Fuente: {newsIndividual.source}</p>
+            <a class="sourceLink" href={newsIndividual.link} target="_blank"> 🔗 Enlace a a la noticia completa</a>
+        </article>
 </div>

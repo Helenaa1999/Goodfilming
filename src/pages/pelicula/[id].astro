@@ -5,13 +5,21 @@ import {getVideos} from "../../lib/api/videos.js";
 
 
 export async function getStaticPaths(){
-    const res= await fetch (`https://api.themoviedb.org/3/movie/now_playing?api_key=de6d4ae5a295146cc6e2d05c638d7b7c&language=es-ES`);
-    const data = await res.json();
-    const films = data.results;
+    const categories= ['now_playing', 'popular', 'top-rated', 'upcoming'];
+    const paths=[];
+    for(const category of categories){
+        const res= await fetch (`https://api.themoviedb.org/3/movie/${category}?api_key=de6d4ae5a295146cc6e2d05c638d7b7c&language=es-ES`);
+        const data = await res.json();
+        const films = Array.isArray(data.results) ? data.results : [];
+        films.forEach(film => {
+            if(film.id){
+                paths.push({
+                params: {id: film.id.toString()}
+                });
+            }
+        });
+    };
 
-    const paths = films.map((film: { id: { toString: () => any; }; })=>({
-        params: {id: film.id.toString()}
-    }));
 
     return paths;
 }

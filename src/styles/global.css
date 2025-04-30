@@ -126,14 +126,46 @@ body{
 
 /*Estilos página principal*/
 
+.newsGrid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 2rem 0;
+}
+
+.news-item{
+    height: 350px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.9rem;
+    transform: 0.2s ease-in-out;
+}
+
+.news-item:hover{
+    transform: scale(1.02);
+}
+
+.news-item h2{
+    font-size: 1rem;
+    text-align: center;
+}
+
+.news-item .date, .descripction, .source, .sourceLink{
+    display: none;
+}
+
+
 .carrousel{
     position: relative;
     width: 100%;
     margin:25px auto;
-    overflow: hidden;
+    overflow: hidden; 
     border-radius: 10px;
     box-shadow: 0 0 20px #082435;
-    padding: 2rem 0;
+    padding: 2rem 1rem 2rem 0rem;
+    max-width: 1200px;
 }
 .carrousel-track{
     display: flex;
@@ -151,6 +183,7 @@ body{
     align-items: center;
     justify-content: center;
     font-size: 1rem;
+    flex: 0 0 25%;
 }
 .carrousel-item img{
     width: 100%;
@@ -163,7 +196,7 @@ body{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: #082435;
+    background-color: #01070a;
     color: white;
     border: none;
     border-radius: 10%;
@@ -174,20 +207,27 @@ body{
 .carrousel-button:hover{
     background-color: #6C92EB;
 }
+
 .carrousel-button.prev{
-    left: 320px;
+    left: 1rem;
 }
 .carrousel-button.next{
-    right: 320px;
+    right: 1rem;
 }
-.carrousel-dots{
-    position: absolute;
-    bottom: 19px;
-    left: 50%;
-    transform: translateX(-50%);
+
+.popularContainer{
     display: flex;
-    gap: 8px;
+    width: 100%;
 }
+
+.filmContainerPopular{
+}
+
+
+/*display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 1rem;
+padding: 2rem 0;*/
 
 /*Estilos de la section de noticias*/
 .newsContainer{

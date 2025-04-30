@@ -1,0 +1,18 @@
+---
+import Film from "./Film.astro"
+
+import { getPopular } from "../lib/api/movies";
+const films = await getPopular();
+let num =1;
+---
+
+<h1 class="headings">Películas populares:</h1>
+<article class="popularContainer">
+    {films.slice(0,10).map((film: {poster_path:any; id: any; title: unknown;}, index:number)=>
+        <div>
+            <p>{index + 1}</p>
+            <Film film={film} class="filmContainerPopular"/>
+        </div>
+    )}
+</article>
+

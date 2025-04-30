@@ -1,5 +1,15 @@
 ---
+import News from "./News.astro"
 
+import { getNews } from "../lib/api/news";
+const news = await getNews();
 ---
 
 <a href="/newsPage" class="headings">Noticias:</a>
+<article>
+    <div class="newsGrid">
+        {
+            news.slice(0,10).map(newsItem => 
+                <News newsIndividual={newsItem} class="news-item" /> )
+        }
+    </div>

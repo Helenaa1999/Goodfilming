@@ -49,7 +49,7 @@ export async function getNews() {
                 title: item.title,
                 link:item.link,
                 descripction: item.contentSnippet || item.descripction || "Sin descripción",
-                imgage: item.enclosure ? item.enclosure.url : item.image || item.thumbnail || "https://www.sensacine.com/imagenes/2023/10/03/20231003103219523.jpg",
+                image: item.enclosure ? item.enclosure.url : item.image || item.thumbnail || "https://www.sensacine.com/imagenes/2023/10/03/20231003103219523.jpg",
                 date: capitalizedFirstLetter,
                 source: feed.title || "Desconocido"
             };
