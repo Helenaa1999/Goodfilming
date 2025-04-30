@@ -34,10 +34,10 @@
         return "dark";
     })();
 
-    if(theme === "light"){
-        document.documentElement.classList.remove("dark");
+    if(theme === "dark"){
+        document.documentElement.classList.remove("light");
     }else{
-        document.documentElement.classList.add("dark");
+        document.documentElement.classList.add("light");
     }
 
     window.localStorage.setItem("theme", theme);
