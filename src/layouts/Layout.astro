@@ -21,11 +21,28 @@ const {pageTitle} = Astro.props;
 	<body>
 		<Header/>
 		<BtnUp/>
-		<section class="content-section">
+		<section class="content-section" style="padding-top: 60px;">
 			<slot/>
 		</section>
 		<Footer/>
 	</body>
+	
+	<script client:onload>
+		window.addEventListener("scroll", ()=>{
+			const navbar = document.querySelector(".navbar");
+			const logoContainer= document.querySelector(".logoContainer") 
+			if(window.scrollY > 40){
+				navbar.classList.add("scrolled");
+				logoContainer.classList.add("hidden")
+	
+			}else{
+				navbar.classList.remove("scrolled");
+				logoContainer.classList.remove("hidden");
+			}
+		});
+	</script>
+
 </html>
+
 
 
