@@ -6,10 +6,12 @@ const news = await getNews();
 ---
 
 <a href="/newsPage" class="headings">Noticias:</a>
-<article>
+<article class="newsIndexContainer">
     <div class="newsGrid">
         {
             news.slice(0,10).map(newsItem => 
                 <News newsIndividual={newsItem} class="news-item" /> )
         }
     </div>
+    <a href="/newsPage" class="linkPage">➕ Pulsa para ver más noticias</a>
+</article>

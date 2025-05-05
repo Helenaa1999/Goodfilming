@@ -9,7 +9,10 @@ const pageTitle = "Goodfilming";
 ---
 
 <Layout pageTitle={pageTitle}>
+    <div class="introContainer">
+        <p class="intro">En esta página podrás conocer las últimas<a href="/newsPage"> noticias </a>sobre cine y conocer los <a href="/nowPlayingPage">estrenos</a>.</p>        
+    </div>
     <NewsIndex/>
     <NowPlayingIndex/>
-    <!-- <Popular/> -->
+    <Popular/>
 </Layout>

@@ -23,19 +23,15 @@ const films = await getNowPlaying();
 
 <!--Is browser es para que se cargue en el navegador porque de forma automática sólo carga las partes estáticas -->
 <script client:load>
-document.addEventListener("DOMContentLoaded", function() {
     let currentSlide=0;
     const track = document.querySelector(".carrousel-track");
     const slides = document.querySelectorAll(".carrousel-item");
-    const dots = document.querySelectorAll(".dot");
     const itemPerSlide = 4;
 
     function updateCarrousel(index){
         currentSlide = index;
         const offset = -(index * (100/itemPerSlide));
         track.style.transform = `translateX(${offset}%)`;
-        dots.forEach(dot => dot.classList.remove("active"));
-        dots[index].classList.add("active");
     }
 
      //El número de items que se van a ver en la pantalla
@@ -49,6 +45,4 @@ document.addEventListener("DOMContentLoaded", function() {
         const newIndex = Math.min(currentSlide + itemPerSlide, maxIndex);
         updateCarrousel(newIndex);
     });
-
-});
 </script>
