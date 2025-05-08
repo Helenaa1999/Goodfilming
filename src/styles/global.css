@@ -1,20 +1,32 @@
-/*Para que cuando se ponga en modo oscuro, el html cambie de color y las letras sean blancas*/
-html.dark{
-    background-color: rgb(8, 36, 53);
-    color: white;
+:root{
+   --dark-blue: rgb(8, 36, 53); 
+   --hover-blue: #6c92eb;
+   --white: white;
+   --almost-black: #01070a;
+}
 
+
+/*Para que cuando se ponga en modo oscuro, el html cambie de color y las letras sean blancas*/
+html.dark body, 
+html.dark .nav-links a,
+html.dark .articleContainer h2 a, 
+html.dark h1,
+html.dark h2, 
+html.dark a{
+    background-color: var(--dark-blue);
+    color: var(--white);
 }
 
 
 *{
     margin: 0;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-decoration: none;
 }
 
 html, body{
-    height: 100%;
-    width: 100%;
+    height: auto;
+    width: auto;
 }
 
 body{
@@ -22,15 +34,21 @@ body{
     flex-direction: column;
 }
 
+.flex-col-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .headings{
     font-size: 1.5rem;
     text-decoration: none;
-    color:rgb(8, 36, 53);
+    color:var(--dark-blue);
     font-weight: bold;
     position: relative;
 }
 .headings:hover{
-    color: #6C92EB;
+    color: var(--hover-blue);
 }
 .headings::after{
     content: "";
@@ -38,7 +56,7 @@ body{
     left: 10px;
     bottom: -6px;
     height: 3px;
-    background-color: #071f2e;
+    background-color: var(--almost-black);
     width: 100%;
 }
 
@@ -49,12 +67,12 @@ body{
 
 
 .headingSections:hover{
-    color: rgb(8, 36, 53);
+    color: var(--dark-blue);
 }
 
 .btnUp{
-    background-color: rgb(8, 36, 53);
-    color: white;
+    background-color: var(--dark-blue);
+    color: var(--white);
     border-radius: 50%;
     border:#030b11 solid 1px;
     height: 70px; 
@@ -67,22 +85,25 @@ body{
     z-index: 1000;
     transition: 1s;
     visibility: hidden;
+    transform: scale(0.9);
 }
 
 .btnUp:hover{
-    background-color: white;
-    color: rgb(8, 36, 53);
+    background-color: var(--white);
+    color: var(--dark-blue);
 }
 
 .btnUp.show{
     opacity: 1;
     visibility: visible;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
 }
 
 /*Logo de la página*/
 .logo{
-    background-color: rgb(8, 36, 53);
-    color: white;
+    background-color: var(--dark-blue);
+    color: var(--white);
     padding: 1rem;
     padding-left: 20%;
     font-family: "Bebas Neue", sans-serif;
@@ -101,19 +122,50 @@ body{
 }
 
 /*Menú de la página*/
-.navbar{
+.navbar {
     display: flex;
-    justify-content: space-between;
-    background-color: rgb(8, 36, 53);
-    padding: 1rem 20% 0 20%;
+    background-color: var(--dark-blue);
     width: 100%;
     position: fixed;
-    z-index: 100;
-    margin-top: 0;
     transition: top 0.1s cubic-bezier(0.4, 0, 0.2, 1),
                 box-shadow 0.2s ease,
                 opacity 0.2s ease;
-    top: 95px;
+    z-index: 10000;
+}
+
+.navbar-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto; 
+    padding-right: 2rem; 
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logInContainer {
+    display: none;
+}
+
+.logInContainer.show{
+    display: block;
+    position: absolute;
+    top: 2.8rem;
+    padding: 1.5rem;
+    right: 24.8rem;
+    border: var(--almost-black) solid 1px;
+    background-color: #fff;
+    width: 10%;
 }
 
 .navbar.scrolled{
@@ -123,14 +175,14 @@ body{
 
 .nav-links a{
     text-decoration: none;
-    color: white;
+    color: var(--white);
     font-weight: bold;
     padding: 1rem;
 }
 
 .nav-links a:hover{
     color: #082435;
-    background-color: white;
+    background-color: var(--white);
     border-radius:10% 10% 0 0;
 }
 
@@ -150,9 +202,6 @@ body{
 
 .container404{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 2rem;
 }
 
@@ -164,9 +213,9 @@ body{
 }
 
 .newsIndexContainer .linkPage{
-    background-color: #071f2e;
-    border: 1px solid #071f2e;
-    color: white;
+    background-color: var(--almost-black);
+    border: 1px solid var(--almost-black);
+    color: var(--white);
     width: 30%;
     padding: 1rem;
     border-radius: 10px;
@@ -178,8 +227,8 @@ body{
 
 .newsIndexContainer .linkPage:hover{
     text-decoration: none;
-    color:#071f2e;
-    background-color: white;
+    color:var(--almost-black);
+    background-color: var(--white);
 }
 
 .newsGrid{
@@ -231,7 +280,7 @@ body{
     margin:25px auto;
     overflow: hidden; 
     border-radius: 10px;
-    box-shadow: 0 0 20px #082435;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 2rem 1rem 2rem 0rem;
     max-width: 1200px;
 }
@@ -246,9 +295,6 @@ body{
     background-color: #082435;
     border-radius: 10px;
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
     font-size: 1rem;
     box-sizing: border-box;
@@ -266,7 +312,7 @@ body{
     top: 50%;
     transform: translateY(-50%);
     background-color: #01070a;
-    color: white;
+    color: var(--white);
     border: none;
     border-radius: 10%;
     padding: 1rem;
@@ -274,7 +320,7 @@ body{
     z-index: 10;
 }
 .carrousel-button:hover{
-    background-color: #6C92EB;
+    background-color: var(--hover-blue);
 }
 
 .carrousel-button.prev{
@@ -290,7 +336,7 @@ body{
     width: 100%;
     margin:25px auto;
     border-radius: 10px;
-    box-shadow: 0 0 20px #082435;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 2rem 1rem 2rem 0rem;
     max-width: 1200px;
 }
@@ -307,7 +353,7 @@ body{
 .film-item{
     border-radius: 10px;
     background-color: #082435 ;
-    color: white;
+    color: var(--white);
     padding: 1rem;
 }
 
@@ -318,8 +364,8 @@ body{
 }
 
 .numPopular{
-    background-color: #071f2e;
-    color: white;
+    background-color: var(--almost-black);
+    color: var(--white);
     height: 25px;
     width: 25px;
     border-radius: 100%;
@@ -337,8 +383,8 @@ body{
 }
 
 .articleContainer{
-    border: solid 1px rgb(8, 36, 53);
-    box-shadow: 0 0 5px #082435;
+    border: solid 1px var(--dark-blue);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 1rem;
     display: flex;
@@ -353,7 +399,7 @@ body{
 
 .articleContainer h2 a{
     text-decoration: none;
-    color: rgb(8, 36, 53);
+    color: var(--dark-blue);
 }
 
 .articleContainer img{
@@ -363,17 +409,17 @@ body{
 
 .sourceLink{
     align-self: center;
-    background-color: rgb(8, 36, 53);
+    background-color: var(--dark-blue);
     text-decoration: none;
-    color: white;
+    color: var(--white);
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    border: solid 1px white;
+    border: solid 1px var(--white);
 }
 .sourceLink:hover{
-    background-color: white;
-    color: rgb(8, 36, 53);
-    border: solid 1px rgb(8, 36, 53);
+    background-color: var(--white);
+    color: var(--dark-blue);
+    border: solid 1px var(--dark-blue);
 }
 
 
@@ -387,7 +433,7 @@ body{
 .filmContainer{
     margin: 0;
     width: 17.5%;
-    border: solid 1px rgb(8, 36, 53);
+    border: solid 1px var(--dark-blue);
     padding: 4px;
 }
 
@@ -419,7 +465,7 @@ body{
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: rgb(8, 36, 53);
+    background-color: var(--dark-blue);
     padding: 80%;
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
@@ -430,17 +476,17 @@ body{
 }
 
 .btn button{
-    color: rgb(8, 36, 53);
-    background-color: white;
+    color: var(--dark-blue);
+    background-color: var(--white);
     font-size: 20px;
     padding: 10px 30px;
-    border: white solid 2px;
+    border: var(--white) solid 2px;
     cursor: pointer;
 }
 
 .btn button:hover{
     background-color: #030b11;
-    color: white;
+    color: var(--white);
 }
 
 /*Estilos películas estrenos al pulsar ver más*/
@@ -480,11 +526,8 @@ body{
 .rating{
     grid-area: rating;
     background-color: #082435;
-    color: white;
+    color: var(--white);
     width:15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 1rem;
     border-radius: 5%;
     transition: background-color 0.3s;
@@ -498,12 +541,56 @@ iframe{
 }
 
 
+/*Estilos form LogIn y register*/
+.formContainer{
+    border: 1px red solid;
+    height: 20rem;
+    color: #082435;
+}
+
+.form{
+    background-color: #fff;
+    justify-content: center;
+    gap: 1rem;
+    width: 50%;
+}
+
+.form div{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input[type="email"], 
+input[type="password"], 
+input[type="text"],
+input[type="submit"]{
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: solid 1.5px #082435;
+    font-size: 15px;
+}
+
+input[type="submit"]{
+    background-color: #082435;
+    color: var(--white);
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background-color: var(--white);
+    color: #082435;
+}
+
+
+
 /*Footer*/
 .footerContainer{
-    color: white;
+    color: var(--white);
     display: flex;
-    background-color:rgb(8, 36, 53);
+    background-color:var(--dark-blue);
     padding: 1rem 20%;
+    margin-top: 15rem;
 }
 
 /*FooterNav*/
@@ -511,17 +598,17 @@ iframe{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: solid 0.5px white;
+    border: solid 0.5px var(--white);
     border-top: none;
     padding: 1rem 7rem;
 }
 
 .footerNav a{
-    color: white;
+    color: var(--white);
     padding: 5px;
 }
 .footerNav a:hover{
-    color:#6C92EB;
+    color:var(--hover-blue);
 }
 
 /*RRSS*/
@@ -531,24 +618,24 @@ iframe{
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    border: solid 0.5px white;
+    border: solid 0.5px var(--white);
     border-top: none;
     padding: 1rem 7rem;
 }    
 
 .RRSS{
     background:none;
-    border: solid 3px white;
+    border: solid 3px var(--white);
     border-radius: 100%;
     padding: 0.5rem;
 }
 
 .RRSS:hover path{
-    fill: #6C92EB;
+    fill: var(--hover-blue);
 }
 
 .RRSS:hover{
-    border-color: #6C92EB;
+    border-color: var(--hover-blue);
 }
 
 /*Enlaces del footer*/
@@ -556,17 +643,17 @@ iframe{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: solid 0.5px white;
+    border: solid 0.5px var(--white);
     border-top: none;
     padding: 1rem 7rem;
 }
 
 .linksFooterContainer a {
-    color: white;
+    color: var(--white);
     padding: 3px;
 }
 .linksFooterContainer a:hover{
-    color: #6C92EB;
+    color: var(--hover-blue);
 }
 
 
@@ -576,11 +663,46 @@ iframe{
     }
     
     .logo{
-        padding: 1rem;
+        padding-left: 1rem;
     }
 
     .navbar{
-        padding-top: 1.5rem; 
+        padding-left: 0; 
+        width: 100%;
+    }
+
+    .navbar-wrapper {
+        width: 100%;
+        padding: 0 1rem;
+        position: relative;
+    }
+
+    .nav-links {
+        flex: 1;
+    }
+
+    .nav-controls {
+        position: absolute;
+        right: 1rem;
+        gap: 1rem;
+    }
+
+    .logInContainer{
+        position: absolute;
+        display: none;
+    }
+
+    .logInContainer.show{
+        display: block !important;
+        top: 2.8rem;
+        padding: 1rem;
+        right: 0rem;
+        width: 100%;
+    }
+
+    .logInContainer.show a{
+        text-decoration: none;
+        color: #082435;
     }
 
     .filmContainer{

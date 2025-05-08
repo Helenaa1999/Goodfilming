@@ -9,7 +9,7 @@ const films = await getNowPlaying();
     <div class="carrousel">
         <div class="carrousel-track">
             {films.map((film: {poster_path : any; id: any; title: unknown}) =>(
-                <Film film={film} class="carrousel-item"/>
+                <Film film={film} class="carrousel-item flex-col-center"/>
             ))}
         </div>
         <button class="carrousel-button prev">&#10094;</button>
@@ -22,7 +22,7 @@ const films = await getNowPlaying();
 </div>
 
 <!--Is browser es para que se cargue en el navegador porque de forma automática sólo carga las partes estáticas -->
-<script client:load>
+<script is:inline>
     let currentSlide=0;
     const track = document.querySelector(".carrousel-track");
     const slides = document.querySelectorAll(".carrousel-item");

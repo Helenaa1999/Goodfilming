@@ -7,7 +7,7 @@ const films = await getPopular();
 
 
 <article>
-    <h1 class="headings">Películas populares hoy:</h1>
+    <h1 class="headings">Películas populares:</h1>
     <div class="popularContainer">
         <div class="filmPopularContainer">
             {films.slice(0,10).map((film: {poster_path:any; id: any; title: unknown;}, index:number)=>
