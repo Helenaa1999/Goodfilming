@@ -1,8 +1,8 @@
 :root{
-   --dark-blue: rgb(8, 36, 53); 
+   --dark_blue: rgb(8, 36, 53); 
    --hover-blue: #6c92eb;
    --white: white;
-   --almost-black: #01070a;
+   --almost_black: #01070a;
 }
 
 
@@ -13,7 +13,7 @@ html.dark .articleContainer h2 a,
 html.dark h1,
 html.dark h2, 
 html.dark a{
-    background-color: var(--dark-blue);
+    background-color: var(--dark_blue);
     color: var(--white);
 }
 
@@ -25,7 +25,7 @@ html.dark a{
 }
 
 html, body{
-    height: auto;
+    height: 100%;
     width: auto;
 }
 
@@ -43,12 +43,12 @@ body{
 .headings{
     font-size: 1.5rem;
     text-decoration: none;
-    color:var(--dark-blue);
+    color:var(--dark_blue);
     font-weight: bold;
     position: relative;
 }
 .headings:hover{
-    color: var(--hover-blue);
+    color: var(--hover_blue);
 }
 .headings::after{
     content: "";
@@ -56,22 +56,23 @@ body{
     left: 10px;
     bottom: -6px;
     height: 3px;
-    background-color: var(--almost-black);
+    background-color: var(--dark_blue);
     width: 100%;
 }
 
 .headingSections{
     padding: 1rem 0;
     position: relative;
+    color: var(--dark_blue);
 }
 
 
 .headingSections:hover{
-    color: var(--dark-blue);
+    color: var(--dark_blue);
 }
 
 .btnUp{
-    background-color: var(--dark-blue);
+    background-color: var(--dark_blue);
     color: var(--white);
     border-radius: 50%;
     border:#030b11 solid 1px;
@@ -90,7 +91,7 @@ body{
 
 .btnUp:hover{
     background-color: var(--white);
-    color: var(--dark-blue);
+    color: var(--dark_blue);
 }
 
 .btnUp.show{
@@ -102,7 +103,7 @@ body{
 
 /*Logo de la página*/
 .logo{
-    background-color: var(--dark-blue);
+    background-color: var(--dark_blue);
     color: var(--white);
     padding: 1rem;
     padding-left: 20%;
@@ -124,7 +125,7 @@ body{
 /*Menú de la página*/
 .navbar {
     display: flex;
-    background-color: var(--dark-blue);
+    background-color: var(--dark_blue);
     width: 100%;
     position: fixed;
     transition: top 0.1s cubic-bezier(0.4, 0, 0.2, 1),
@@ -163,7 +164,7 @@ body{
     top: 2.8rem;
     padding: 1.5rem;
     right: 24.8rem;
-    border: var(--almost-black) solid 1px;
+    border: var(--almost_black) solid 1px;
     background-color: #fff;
     width: 10%;
 }
@@ -213,8 +214,8 @@ body{
 }
 
 .newsIndexContainer .linkPage{
-    background-color: var(--almost-black);
-    border: 1px solid var(--almost-black);
+    background-color:var(--dark_blue) !important;
+    border: 1px solid var(--dark_blue) !important;
     color: var(--white);
     width: 30%;
     padding: 1rem;
@@ -227,8 +228,8 @@ body{
 
 .newsIndexContainer .linkPage:hover{
     text-decoration: none;
-    color:var(--almost-black);
-    background-color: var(--white);
+    color:var(--almost_black);
+    background-color: var(--white) !important;
 }
 
 .newsGrid{
@@ -337,13 +338,12 @@ body{
     margin:25px auto;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 2rem 1rem 2rem 0rem;
+    padding: 2rem 1rem 2rem 1rem;
     max-width: 1200px;
 }
 
 .filmPopularContainer{
     display: flex;
-    flex-wrap: wrap;
     padding-left: 0.8rem;
     gap:0.8rem;
     transition: transform 0.5s ease;
@@ -357,6 +357,7 @@ body{
     padding: 1rem;
 }
 
+
 .numPopularContainer{
     display: flex;
     justify-content: center;
@@ -364,13 +365,16 @@ body{
 }
 
 .numPopular{
-    background-color: var(--almost-black);
-    color: var(--white);
+    background-color: var(--dark_blue) !important;
+    color: var(--white) ;
     height: 25px;
     width: 25px;
     border-radius: 100%;
     font-size: 25px;
     padding: 0.8rem;
+}
+.numPopular.top{
+    background-color: rgb(255, 217, 0);
 }
 
 /*Estilos de la section de noticias*/
@@ -383,7 +387,7 @@ body{
 }
 
 .articleContainer{
-    border: solid 1px var(--dark-blue);
+    border: solid 1px var(--dark_blue);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 1rem;
@@ -399,7 +403,7 @@ body{
 
 .articleContainer h2 a{
     text-decoration: none;
-    color: var(--dark-blue);
+    color: var(--dark_blue);
 }
 
 .articleContainer img{
@@ -409,7 +413,7 @@ body{
 
 .sourceLink{
     align-self: center;
-    background-color: var(--dark-blue);
+    background-color: var(--dark_blue);
     text-decoration: none;
     color: var(--white);
     padding: 0.5rem 1rem;
@@ -418,8 +422,8 @@ body{
 }
 .sourceLink:hover{
     background-color: var(--white);
-    color: var(--dark-blue);
-    border: solid 1px var(--dark-blue);
+    color: var(--dark_blue);
+    border: solid 1px var(--dark_blue);
 }
 
 
@@ -433,7 +437,7 @@ body{
 .filmContainer{
     margin: 0;
     width: 17.5%;
-    border: solid 1px var(--dark-blue);
+    border: solid 1px var(--dark_blue);
     padding: 4px;
 }
 
@@ -465,7 +469,7 @@ body{
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: var(--dark-blue);
+    background-color: var(--dark_blue);
     padding: 80%;
     cursor: pointer;
     transition: opacity 0.3s ease-in-out;
@@ -476,7 +480,7 @@ body{
 }
 
 .btn button{
-    color: var(--dark-blue);
+    color: var(--dark_blue);
     background-color: var(--white);
     font-size: 20px;
     padding: 10px 30px;
@@ -546,6 +550,8 @@ iframe{
     border: 1px red solid;
     height: 20rem;
     color: #082435;
+    height: auto;
+    padding: 1rem 0;
 }
 
 .form{
@@ -564,7 +570,8 @@ iframe{
 input[type="email"], 
 input[type="password"], 
 input[type="text"],
-input[type="submit"]{
+input[type="submit"],
+input[type="date"]{
     padding: 0.5rem;
     border-radius: 5px;
     border: solid 1.5px #082435;
@@ -588,9 +595,8 @@ input[type="submit"]:hover{
 .footerContainer{
     color: var(--white);
     display: flex;
-    background-color:var(--dark-blue);
+    background-color:var(--dark_blue);
     padding: 1rem 20%;
-    margin-top: 15rem;
 }
 
 /*FooterNav*/
