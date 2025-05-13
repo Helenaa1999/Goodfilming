@@ -48,7 +48,7 @@ body{
     position: relative;
 }
 .headings:hover{
-    color: var(--hover_blue);
+    color: var(--hover-blue);
 }
 .headings::after{
     content: "";
@@ -344,6 +344,7 @@ body{
 
 .filmPopularContainer{
     display: flex;
+    flex-wrap: wrap;
     padding-left: 0.8rem;
     gap:0.8rem;
     transition: transform 0.5s ease;
@@ -547,7 +548,6 @@ iframe{
 
 /*Estilos form LogIn y register*/
 .formContainer{
-    border: 1px red solid;
     height: 20rem;
     color: #082435;
     height: auto;
