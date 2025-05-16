@@ -5,8 +5,6 @@
    --almost_black: #01070a;
 }
 
-
-/*Para que cuando se ponga en modo oscuro, el html cambie de color y las letras sean blancas*/
 html.dark body, 
 html.dark .nav-links a,
 html.dark .articleContainer h2 a, 
@@ -27,6 +25,7 @@ html.dark a{
 html, body{
     height: 100%;
     width: auto;
+    scroll-behavior:smooth;
 }
 
 body{
@@ -551,7 +550,12 @@ iframe{
     height: 20rem;
     color: #082435;
     height: auto;
-    padding: 1rem 0;
+    width: 50%;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    border: solid 1px #eee;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .form{
@@ -559,6 +563,7 @@ iframe{
     justify-content: center;
     gap: 1rem;
     width: 50%;
+
 }
 
 .form div{
