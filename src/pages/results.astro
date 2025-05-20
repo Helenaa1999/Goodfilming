@@ -1,0 +1,45 @@
+---
+export const prerender = false
+import Layout from '../layouts/Layout.astro';
+const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZTZkNGFlNWEyOTUxNDZjYzZlMmQwNWM2MzhkN2I3YyIsIm5iZiI6MTc0MjIwNDcwMy4zMzQsInN1YiI6IjY3ZDdlZjFmZDgwMjMwOTcwM2YxODJhNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j_5W4yQdwSXPgEmaqQntuDVt9-ysfR7b_OTvameod_A";
+const {url} = Astro.request;
+const query = Astro.url.searchParams.get("query");
+
+let results: {title: string; overview: string; poster_path: string | null} [] = [];
+
+if(query?.trim() !== ""){
+    const options ={
+        method : 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${API_KEY}`
+        }
+    }
+    
+    const res = await fetch (`https://api.themoviedb.org/3/search/movie?include_adult=false&language=es-ES&page=1&query=${encodeURIComponent(query ?? "")}`, options);
+    const data = await res.json();
+    results = data.results || [];
+
+    console.log("Valor de query:", query);
+    console.log("URL completa: ", url);
+
+}
+
+---
+<Layout>
+    <h1>Resultados para "{query}"</h1>
+    {results.length > 0 ? (
+        <ul>
+            {results.map((result: { title: string; overview: string; poster_path: string | null; }) => (
+                <li>
+                    <h2>{result.title || "Sin título"}</h2>
+                    <p>{result.overview || "Sin overview"}</p>
+                    {result.poster_path && <img src={`https://image.tmdb.org/t/p/w200${result.poster_path}`} alt={result.title} />}
+                </li>
+            ))}
+        </ul>
+        ) : (
+            <p>No se encontraron resultados para "{query}"</p>
+        )
+    }
+</Layout>

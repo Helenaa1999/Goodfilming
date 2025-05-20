@@ -650,13 +650,14 @@ input[type="submit"]:hover{
 }
 
 /*Enlaces del footer*/
-.linksFooterContainer{
+.creditsFootContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     border: solid 0.5px var(--white);
     border-top: none;
     padding: 1rem 7rem;
+    gap: 1rem;
 }
 
 .linksFooterContainer a {
