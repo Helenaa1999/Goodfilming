@@ -3,14 +3,15 @@ import ThemeIcon from "./ThemeIcon.astro";
 import User from "./User.astro";
 ---
 <nav class="navbar">
-    <div class="nav-links">
-        <a href="/newsPage">Noticias</a>
-        <a href="/nowPlayingPage">Estrenos</a>
-        <a href="/misPeliculas">Mis películas</a>
-    </div>
-    <div>
-        <ThemeIcon/>
-        <User/>
+    <div class="navbar-wrapper">
+        <div class="nav-links">
+            <a href="/newsPage">Noticias</a>
+            <a href="/nowPlayingPage">Estrenos</a>
+            <a href="/misPeliculas">Mis películas</a>
+        </div>
+        <div class="nav-controls">
+            <ThemeIcon/>
+            <User/>
+        </div>
     </div>
 </nav>
-

@@ -27,7 +27,7 @@ const {pageTitle} = Astro.props;
 		<Footer/>
 	</body>
 	
-	<script client:onload>
+	<script is:inline>
 		window.addEventListener("scroll", ()=>{
 			const navbar = document.querySelector(".navbar");
 			const logoContainer= document.querySelector(".logoContainer") 
