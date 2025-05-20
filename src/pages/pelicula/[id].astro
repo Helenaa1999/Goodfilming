@@ -2,6 +2,8 @@
 //Objeto que contiene valores de segmentos de ruta dinámica que coincidan con esta petición
 import Layout from '../../layouts/Layout.astro';
 import {getVideos} from "../../lib/api/videos.js";
+export const prerender = false
+
 
 
 export async function getStaticPaths(){
@@ -76,7 +78,7 @@ let vote_averageParaMostrar = Math.round(vote_average*10)/10;
     document.addEventListener('DOMContentLoaded', function(){
         var overview = document.querySelector(".overview");
         if(overview && !overview?.textContent?.trim()){
-            overview.textContent = "--------------------------------------------------------------- Sinopsis no disponible --------------------------------------------------------------";
+            overview.textContent = "------------------------------------------------------ Sinopsis no disponible -----------------------------------------------------";
         }
     });
 </script>

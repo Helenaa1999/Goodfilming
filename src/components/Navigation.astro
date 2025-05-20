@@ -1,6 +1,7 @@
 ---
 import ThemeIcon from "./ThemeIcon.astro";
 import User from "./User.astro";
+import SearchItem from "./SearchItem.astro";
 ---
 <nav class="navbar">
     <div class="navbar-wrapper">
@@ -8,6 +9,9 @@ import User from "./User.astro";
             <a href="/newsPage">Noticias</a>
             <a href="/nowPlayingPage">Estrenos</a>
             <a href="/misPeliculas">Mis películas</a>
+        </div>
+        <div>
+            <SearchItem/>
         </div>
         <div class="nav-controls">
             <ThemeIcon/>

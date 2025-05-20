@@ -3,13 +3,13 @@ import { defineConfig } from 'astro/config';
 
 import node from '@astrojs/node';
 
+import vercel from '@astrojs/vercel';
+
 // https://astro.build/config
 export default defineConfig({
   experimental: {
-    session:true
+    session:false
   },
   
-  adapter: node({
-    mode: 'standalone'
-  })
+  adapter: vercel()
 });
