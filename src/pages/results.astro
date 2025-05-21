@@ -6,7 +6,7 @@ const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZTZkNGFlNWEyOTUxNDZjYzZlMmQwNW
 const {url} = Astro.request;
 const query = Astro.url.searchParams.get("query");
 
-let results: {title: string; overview: string; poster_path: string | null} [] = [];
+let results: {title: string; overview: string; poster_path: string; release_date: string| null} [] = [];
 
 if(query?.trim() !== ""){
     const options ={
@@ -20,19 +20,25 @@ if(query?.trim() !== ""){
     const res = await fetch (`https://api.themoviedb.org/3/search/movie?include_adult=false&language=es-ES&page=1&query=${encodeURIComponent(query ?? "")}`, options);
     const data = await res.json();
     results = data.results || [];
+
     
 }
+
 
 ---
 <Layout>
     <h1>Resultados para "{query}"</h1>
     {results.length > 0 ? (
         <ul>
-            {results.map((result: { title: string; overview: string; poster_path: string | null; }) => (
-                <li>
+            {results.map((result: { title: string; overview: string; poster_path: string; release_date:string | null; }) => (
+                <li class="resultFilm">
                     <Film film={result}/>
+                    <div class="resultFilm_info">
                         <h2>{result.title}</h2>
-                        <p>{result.overview}</p>
+                        <p>({result.release_date})</p>
+                        <p>{result.overview}</p>   
+                    </div>
+                        
                 </li>
             ))}
         </ul>
