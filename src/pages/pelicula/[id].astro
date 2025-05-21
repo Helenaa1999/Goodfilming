@@ -8,12 +8,12 @@ export const prerender = false
 
 export async function getStaticPaths(){
     const categories= ['now_playing', 'popular', 'top-rated', 'upcoming'];
-    const paths=[];
+    const paths: { params: { id: any; }; }[]=[];
     for(const category of categories){
         const res= await fetch (`https://api.themoviedb.org/3/movie/${category}?api_key=de6d4ae5a295146cc6e2d05c638d7b7c&language=es-ES`);
         const data = await res.json();
         const films = Array.isArray(data.results) ? data.results : [];
-        films.forEach(film => {
+        films.forEach((film: { id: { toString: () => any; }; }) => {
             if(film.id){
                 paths.push({
                 params: {id: film.id.toString()}

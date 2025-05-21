@@ -245,7 +245,7 @@ body{
     flex-direction: column;
     justify-content: center;
     font-size: 0.9rem;
-    transform: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 
 .news-item:hover{
@@ -439,6 +439,11 @@ body{
     width: 17.5%;
     border: solid 1px var(--dark_blue);
     padding: 4px;
+    border-radius: 10px;
+    transition: ease-in-out 0.1s;
+}
+.filmContainer:hover{
+    transform: scale(1.02);
 }
 
 .filmContainer p{
@@ -594,7 +599,22 @@ input[type="submit"]:hover{
     color: #082435;
 }
 
+/*Estilos resultados*/
+.resultFilm{
+    display: flex;
+    padding: 3rem 0.5rem;
+    margin: 3rem 0;
+    gap: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
 
+.resultFilm_info{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
 
 /*Footer*/
 .footerContainer{
@@ -671,7 +691,8 @@ input[type="submit"]:hover{
 
 @media (max-width: 768px) {
     .content-section{
-        padding: 1rem 15%;
+        margin-top: 6rem;
+        padding: 3rem 15%;
     }
     
     .logo{
@@ -687,18 +708,15 @@ input[type="submit"]:hover{
         width: 100%;
         padding: 0 1rem;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 
     .nav-links {
         flex: 1;
     }
-
-    .nav-controls {
-        position: absolute;
-        right: 1rem;
-        gap: 1rem;
-    }
-
+ 
     .logInContainer{
         position: absolute;
         display: none;
@@ -749,6 +767,12 @@ input[type="submit"]:hover{
     .rating{
         width: 40%;
         margin-left: 20%;
+    }
+
+    .resultFilm{
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
 
     .footerContainer{
