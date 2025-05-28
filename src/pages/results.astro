@@ -2,7 +2,8 @@
 import Film from '../components/Film.astro';
 export const prerender = false
 import Layout from '../layouts/Layout.astro';
-const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZTZkNGFlNWEyOTUxNDZjYzZlMmQwNWM2MzhkN2I3YyIsIm5iZiI6MTc0MjIwNDcwMy4zMzQsInN1YiI6IjY3ZDdlZjFmZDgwMjMwOTcwM2YxODJhNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j_5W4yQdwSXPgEmaqQntuDVt9-ysfR7b_OTvameod_A";
+
+const API_KEY = import.meta.env.TMB_API_KEY2;
 const {url} = Astro.request;
 const query = Astro.url.searchParams.get("query");
 
