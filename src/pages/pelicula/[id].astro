@@ -29,7 +29,7 @@ export async function getStaticPaths(){
 
 const {id} = Astro.params;
 
-const filmRes= await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=de6d4ae5a295146cc6e2d05c638d7b7c&language=es-ES`);
+const filmRes= await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=es-ES`);
 const film = await filmRes.json();
 
 const pageTitle = "Goodfilming -" + film.title;
