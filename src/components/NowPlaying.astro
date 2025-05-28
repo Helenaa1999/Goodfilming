@@ -6,9 +6,11 @@ const films = await getNowPlaying();
 
 
 ---
+<!--Apartado para mostrar los últimos estrenos en un apartado destinado a ello. -->
 <h1 class="headingSections">Últimos estrenos:</h1>
 <article class="nowPlayingContainer">
     {
+        //Map -> Mostrar cada una de las películas añadiéndole el componente Film 
         films.map((film: { poster_path: any; id: any; title: unknown; }) => 
             <Film film={film} class="filmContainer"/>
     )}

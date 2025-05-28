@@ -26,11 +26,13 @@ if(query?.trim() !== ""){
 
 
 ---
+<!--En esta página se muestran los resultados tras realizar una búsqueda.  -->
 <Layout>
     <h1>Resultados para "{query}"</h1>
     {results.length > 0 ? (
         <ul>
             {results.map((result: { title: string; overview: string; poster_path: string; release_date:string | null; }) => (
+                //Esta sería la información que se imprimirá de cada una de las películas
                 <li class="resultFilm">
                     <Film film={result}/>
                     <div class="resultFilm_info">
@@ -43,6 +45,7 @@ if(query?.trim() !== ""){
             ))}
         </ul>
         ) : (
+            //en caso de que no haya ningún resultado para la búsqueda, se mostrará este mensaje
             <p>No se encontraron resultados para "{query}"</p>
         )
     }

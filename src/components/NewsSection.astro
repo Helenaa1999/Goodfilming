@@ -5,10 +5,12 @@ import { getNews } from "../lib/api/news";
 const news = await getNews();
 ---
 
+<!--Al igual que en el componente NewsIndex, esta estructura se muestra para enseñar noticias en un apartado destinado a ello -->
 <div>
     <h1 class="headingSections">Noticias:</h1>
-    <article class="">
+    <article>
             {
+                //Se realiza un map para mostrar cada una de las noticias.
                 news.map(newsItem => 
                     <News newsIndividual={newsItem} class="newsContainer"/> )
             }

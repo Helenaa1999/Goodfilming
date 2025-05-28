@@ -2,6 +2,7 @@
     const {newsIndividual, class: className} = Astro.props;
 ---
 
+<!--En este componente, como en el de Film, se establece la estructura para cada noticia-->
 <div>
         <article class={`articleContainer ${className}`}>
             <h2><a href={newsIndividual.link} target="_blank">{newsIndividual.title}</a></h2>

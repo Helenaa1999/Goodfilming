@@ -10,6 +10,7 @@ const parser = new Parser({
 
 
 export async function getNews() {
+    //Urls de las cuales se quieren coger las noticias
     const urls =[
         'https://www.sensacine.com/rss/noticias-cine.xml',
         'https://www.mundiario.com/cineseries/rss/',
@@ -32,6 +33,7 @@ export async function getNews() {
 
         return feed.items.map(item =>{
             const originalDate = new Date(item.pubDate);
+            //Condiciones para mostrar la fecha de las noticias
             const options = {
                 weekday: 'long',
                 year: 'numeric',
@@ -45,6 +47,8 @@ export async function getNews() {
             const shortDate = new Intl.DateTimeFormat('es-ES', options).format(originalDate);
             const capitalizedFirstLetter = shortDate.charAt(0).toUpperCase() + shortDate.slice(1);
             return{
+                //elementos que quiero que se muestren tras realizar el mapeo. 
+                //En caso de que no se encuentren, se escribe "Sin descripción" o "Desconocido"
                 id: item.guid || item.link,
                 title: item.title,
                 link:item.link,
@@ -57,7 +61,7 @@ export async function getNews() {
     })
 });
 
-
+    //Sirve para mostrar en orden las noticias de la más reciente a la más antigua.
     noticias.sort((a,b)=>new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return noticias;
