@@ -2,15 +2,16 @@
 //Objeto que contiene valores de segmentos de ruta dinámica que coincidan con esta petición
 import Layout from '../../layouts/Layout.astro';
 import {getVideos} from "../../lib/api/videos.js";
-export const prerender = false
+export const prerender = false;
 
+const apiKey = import.meta.env.TMDB_API_KEY;
 
 //Llamada a la api. Para conseguir utilizar esta función en todas las páginas, se ha añadido un array de categorías, el cual después se introducirá en la URL.
 export async function getStaticPaths(){
     const categories= ['now_playing', 'popular', 'top-rated', 'upcoming'];
     const paths: { params: { id: any; }; }[]=[];
     for(const category of categories){
-        const res= await fetch (`https://api.themoviedb.org/3/movie/${category}?api_key=de6d4ae5a295146cc6e2d05c638d7b7c&language=es-ES`);
+        const res= await fetch (`https://api.themoviedb.org/3/movie/${category}?api_key=${apiKey}c&language=es-ES`);
         const data = await res.json();
         const films = Array.isArray(data.results) ? data.results : [];
         films.forEach((film: { id: { toString: () => any; }; }) => {
