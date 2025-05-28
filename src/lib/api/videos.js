@@ -1,4 +1,4 @@
-const YT_API_KEY = "AIzaSyB_X8Q35iwKpgcXtHanHyq5wRz3nw_C7EU";
+const YT_API_KEY = import.meta.env.YT_API_KEY;
 
 
 export async function getVideos(title) {
