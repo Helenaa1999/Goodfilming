@@ -5,7 +5,9 @@ import BtnUp from "../components/BtnUp.astro";
 import Footer from "../components/Footer.astro";
 const {pageTitle} = Astro.props;
 ---
-
+<!--Layout es una plantilla que se va a mostrar en todas las páginas. 
+En las próximas páginas donde se vea la etique <Layout> es para que siga esta estructura.
+Se introduce la etiqueta <slot/> que es donde se insertarán los elementos en cada una de las páginas. -->
 <!doctype html>
 <html lang="en">
 	<head>
@@ -28,6 +30,7 @@ const {pageTitle} = Astro.props;
 	</body>
 	
 	<script is:inline>
+		//Esta parte del script tiene como función que el el menú aparezca tras no mover el ratón durante unos segundos.
 		window.addEventListener("scroll", ()=>{
 			const navbar = document.querySelector(".navbar");
 			const logoContainer= document.querySelector(".logoContainer") 

@@ -5,11 +5,13 @@ import { getPopular } from "../lib/api/movies";
 const films = await getPopular();
 ---
 
-
+<!--Componente para mostrar las películas populares en el index -->
 <article>
     <h1 class="headings">Películas populares:</h1>
     <div class="popularContainer">
         <div class="filmPopularContainer">
+            <!--Se realiza un map para mostrar las películas. 
+            slice-> para que se muestren únicamente 10 películas -->
             {films.slice(0,10).map((film: {poster_path:any; id: any; title: unknown;}, index:number)=>
                 <div class="numPopularContainer">
                     <p class="numPopular">{index + 1}.</p>

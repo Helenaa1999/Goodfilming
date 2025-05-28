@@ -4,10 +4,12 @@ import Film from "./Film.astro";
 import { getNowPlaying } from "../lib/api/movies";
 const films = await getNowPlaying();
 ---
+<!--Carrousel creado para mostrarlo en el index -->
 <div class="carrouselContainer">
     <a href="/nowPlayingPage" class="headings">Estrenos:</a>
     <div class="carrousel">
         <div class="carrousel-track">
+            <!--Map-> Mostrar las películas de estreno. -->
             {films.map((film: {poster_path : any; id: any; title: unknown}) =>(
                 <Film film={film} class="carrousel-item flex-col-center"/>
             ))}

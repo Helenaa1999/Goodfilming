@@ -4,11 +4,12 @@ import News from "./News.astro"
 import { getNews } from "../lib/api/news";
 const news = await getNews();
 ---
-
+<!--Componente del apartado noticias del index -->
 <a href="/newsPage" class="headings">Noticias:</a>
 <article class="newsIndexContainer">
     <div class="newsGrid">
         {
+            //Se realiza un map para poder mostrar cada una de las noticias
             news.slice(0,10).map(newsItem => 
                 <News newsIndividual={newsItem} class="news-item" /> )
         }

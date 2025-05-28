@@ -2,6 +2,7 @@
 
 ---
 
+<!--Este botón sirve para que cuando el usuario se encuentre en la parte inferior, al pulsar suba de manera automática -->
 <div>
     <button class="btnUp">▲</button>
 </div>
@@ -10,6 +11,7 @@
     const btn= document.querySelector(".btnUp");
     window.addEventListener("scroll", function(){
         if(window.scrollY >100){
+            //Al bajar se activa la clase show desarrollada en el CSS
             btn?.classList.add("show");
         }else{
             btn?.classList.remove("show");
@@ -17,6 +19,7 @@
     });
 
     btn?.addEventListener("click", function(){
+        //Al pulsar el botón, la página sube hacia arriba de forma suave
         window.scrollTo({
             top: 0,
             behavior: "smooth"

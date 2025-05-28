@@ -5,7 +5,7 @@ import {getVideos} from "../../lib/api/videos.js";
 export const prerender = false
 
 
-
+//Llamada a la api. Para conseguir utilizar esta función en todas las páginas, se ha añadido un array de categorías, el cual después se introducirá en la URL.
 export async function getStaticPaths(){
     const categories= ['now_playing', 'popular', 'top-rated', 'upcoming'];
     const paths: { params: { id: any; }; }[]=[];
@@ -36,7 +36,7 @@ const pageTitle = "Goodfilming -" + film.title;
 const videoId = await getVideos(film.title);
 
 
-
+//Sirve para mostrar la media de nota y solo tenga un decimal
 const vote_average = film.vote_average;
 let vote_averageParaMostrar = Math.round(vote_average*10)/10;
 
@@ -44,6 +44,7 @@ let vote_averageParaMostrar = Math.round(vote_average*10)/10;
 ---
 
 <Layout pageTitle={pageTitle}>
+    <!--Estructura para mostrar el título de la película, sinopsis, imagen y nota -->
     <h1>{film.title}</h1>
     <div class="nowPlayingTextContainer">
         <img class="imgFilm" src={`https://image.tmdb.org/t/p/w200${film.poster_path}`} alt="{pelicula.title}">
@@ -59,6 +60,7 @@ let vote_averageParaMostrar = Math.round(vote_average*10)/10;
              <!--Añadir para que el usuario evalue y la media de valoraciones de goodfilming -->
         </div>
     </div>
+        <!--Estructura para mostrar el trailer -->
         <h4 class="heading">Trailer:</h4>
         {videoId ? (
             <iframe class="trailer"
@@ -77,6 +79,7 @@ let vote_averageParaMostrar = Math.round(vote_average*10)/10;
 <script>
     document.addEventListener('DOMContentLoaded', function(){
         var overview = document.querySelector(".overview");
+        //En caso de que no haya una overview de la película, se mostrará este mensaje.
         if(overview && !overview?.textContent?.trim()){
             overview.textContent = "------------------------------------------------------ Sinopsis no disponible -----------------------------------------------------";
         }
