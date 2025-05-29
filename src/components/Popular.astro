@@ -13,9 +13,6 @@ const films = await getPopular();
             <!--Se realiza un map para mostrar las películas. 
             slice-> para que se muestren únicamente 10 películas -->
             {films.slice(0,10).map((film: {poster_path:any; id: any; title: unknown;}, index:number)=>
-                <div class="numPopularContainer">
-                    <p class="numPopular">{index + 1}.</p>
-                </div>
                 <Film film={film} class="film-item"/>
             )}
         </div>
