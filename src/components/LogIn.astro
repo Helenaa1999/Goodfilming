@@ -3,18 +3,50 @@
 ---
 
 <h1 class="headingSections">Iniciar sesión:</h1>
-<article class="formContainer flex-col-center">
-    <form action="" class="form flex-col-center">
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" placeholder="Introduce tu email">
-        </div>
-        <div>
-            <label for="Contraseña">Contraseña:</label>
-            <input type="password" placeholder="Introduce tu contraseña">
-        </div>
-        <a href="/">¿Has olvidado la contraseña?</a>
-        <input type="submit" value="Iniciar sesión">
-    </form>
-    <p>¿No tienes cuenta todavía? <a href="/registerPage">Regístrate</a></p>
+<article class="flex-col-center">
+    <div class="formContainer flex-col-center">
+        <form action="" class="form flex-col-center" id="logInForm">
+            <div>
+                <label for="username">User:</label>
+                <input type="text" name="username" id="username" class="username" placeholder="Introduce tu email">
+            </div>
+            <div>
+                <label for="Contraseña">Contraseña:</label>
+                <input type="password" name="password" id="password" class="password" placeholder="Introduce tu contraseña">
+            </div>
+            <a href="/">¿Has olvidado la contraseña?</a>
+            <input type="submit" value="Iniciar sesión">
+            <p id="errorMessage" class="error"></p>
+        </form>
+        <p>¿No tienes cuenta todavía? <a href="/registerPage">Regístrate</a></p>
+    </div>
 </article>
+<script is:inline type="module">
+    const formulario = document.getElementById("logInForm");
+    const errorMessage = document.getElementById("errorMessage");
+    formulario.addEventListener('submit', async(e)=>{
+        //Evita que suceda cualquier evento por defecto
+        e.preventDefault();
+        const formData = new FormData(formulario);
+        //Cojo los valores y los convierto en un objeto
+        const data = Object.fromEntries(formData.entries());
+        try{
+            const res = await fetch("http://localhost:5000/user/signin", {
+                method : "POST",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            if(res.ok){
+                localStorage.setItem('token', result.token);
+                window.location = '/';
+            }else{
+                errorMessage.textContent = result.message || "Error al iniciar sesión";
+            }
+        }catch(error){  
+            errorMessage.textContent = result.message || "Error de conexión con el servidor";
+        }
+    })
+</script>

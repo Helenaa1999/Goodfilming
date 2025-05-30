@@ -3,26 +3,62 @@
 ---
 
 <h1 class="headingSections">Registrarse:</h1>
-<article class="formContainer flex-col-center">
-    <form action="" class="form flex-col-center">
-        <div>
-            <label for="nombre">Nombre: </label>
-            <input type="text" name="nombre" placeholder="Introduce tu nombre" required>
-        </div>
-        <div>
-            <label for="userName">User:</label>
-            <input type="text" name="userName" placeholder="Introduce tu user" required>
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" name="userName" placeholder="Introduce tu email" required>
-        </div>
-        <div>
-            <label for="dateBorn">Fecha de nacimiento</label>
-            <input type="date" name="dateBorn" id="dateBorn" class="dateBorn">
-        </div>
-        <label for="politica">He podido leer y entiendo la <a target="_blank">Política de Privacidad y Cookies</a></label>
-        <input type="submit" value="Registrarse">
-    </form>
+<article class="flex-col-center">
+    <div class="formContainer flex-col-center">
+        <form action="" class="form flex-col-center" id="registerForm">
+            <div>
+                <label for="nombre">Nombre: </label>
+                <input type="text" name="nombre" placeholder="Introduce tu nombre" required>
+            </div>
+            <div>
+                <label for="username">User:</label>
+                <input type="text" name="username" placeholder="Introduce tu user" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder="Introduce tu email" required>
+            </div>
+            <div>
+                <label for="dateBorn">Fecha de nacimiento</label>
+                <input type="date" name="fecha_nac" id="fecha_nac" class="fecha_nac">
+            </div>
+            <div>
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" id="password" class="password">
+            </div>
+            <label for="politica">He podido leer y entiendo la <a target="_blank">Política de Privacidad y Cookies</a></label>
+            <input type="submit" value="Registrarse">
+            <p id="errorMessage" class="error"></p>
+        </form>
+    </div>
+
 </article>
 
+
+<script is:inline type="module">
+    const formulario = document.getElementById("registerForm");
+    formulario.addEventListener('submit', async(e)=>{
+        e.preventDefault();
+        const formData = new FormData(formulario);
+        const data = Object.fromEntries(formData.entries());
+        try{
+            const res = await fetch("http://localhost:5000/user/signup", {
+                method : "POST",
+                headers : {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            const result = await res.json();
+            if(res.ok){
+                localStorage.setItem('token', result.token);
+                window.location = '/index.astro';
+            }
+            else{
+                errorMessage.textContent = result.message || "Error al crear usuario";
+            }
+        }catch(error){
+            errorMessage.textContent = result.message || "Error de conexión con el servidor o red";
+        }
+    });
+</script>

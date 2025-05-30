@@ -166,12 +166,31 @@ body{
     display: block;
     position: absolute;
     top: 2.8rem;
-    padding: 1.5rem;
     right: 24.8rem;
-    border: var(--almost_black) solid 1px;
-    background-color: #fff;
     width: 10%;
+    display: flex;
+    flex-direction: column;
 }
+
+.logInContainer.show a, 
+.logInContainer.show button{
+    border: #082435 solid 2px;
+    padding: 1.8rem;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    color:var(--almost_black);
+}
+
+.logInContainer.show a:hover, 
+.logInContainer.show button:hover{
+    background-color: #082435;
+    color: white;
+}
+
+
 
 .navbar.scrolled{
     top:0;
@@ -597,6 +616,10 @@ input[type="submit"]:hover{
     color: #082435;
 }
 
+.error{
+    color: red;
+}
+
 /*Estilos resultados*/
 .resultFilm{
     display: flex;
@@ -700,15 +723,14 @@ input[type="submit"]:hover{
         flex-direction: row;
         padding: 3rem 20%;
         align-items: space-beetween;
-        width: 100%;
     }
 
+    
     .logInContainer.show{
         display: block !important;
-        top: 100%;
-        padding: 1rem;
-        right: 5%;
-        width: 20%;
+        top: 78%;
+        right: 11%;
+        width: 40%;
     }
 
     .content-section{
@@ -756,10 +778,10 @@ input[type="submit"]:hover{
 
     .logInContainer.show{
         display: block !important;
-        top: 100%;
+        top: 89%;
         padding: 1rem;
-        right: 40%;
-        width: 20%;
+        right:34%;
+        width: 60%;
     }
 
     .logInContainer.show a{
