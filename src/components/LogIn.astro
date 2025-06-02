@@ -41,12 +41,13 @@
             const result = await res.json();
             if(res.ok){
                 localStorage.setItem('token', result.token);
-                window.location = '/';
+                window.location = '/misPeliculas';
+                console.log(result);
             }else{
                 errorMessage.textContent = result.message || "Error al iniciar sesión";
             }
         }catch(error){  
-            errorMessage.textContent = result.message || "Error de conexión con el servidor";
+            errorMessage.textContent = "Error de conexión con el servidor";
         }
     })
 </script>
