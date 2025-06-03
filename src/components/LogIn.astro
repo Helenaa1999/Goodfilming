@@ -1,5 +1,5 @@
 ---
-
+const BACKEND_HOST = import.meta.env.BACKEND_HOST;
 ---
 
 <h1 class="headingSections">Iniciar sesión:</h1>
@@ -21,7 +21,7 @@
         <p>¿No tienes cuenta todavía? <a href="/registerPage">Regístrate</a></p>
     </div>
 </article>
-<script is:inline type="module">
+<script is:inline type="module" define:vars={{ BACKEND_HOST }}>
     const formulario = document.getElementById("logInForm");
     const errorMessage = document.getElementById("errorMessage");
     formulario.addEventListener('submit', async(e)=>{
@@ -31,12 +31,13 @@
         //Cojo los valores y los convierto en un objeto
         const data = Object.fromEntries(formData.entries());
         try{
-            const res = await fetch("http://localhost:5000/user/signin", {
+            const res = await fetch(`${BACKEND_HOST}/user/signin`, {
                 method : "POST",
                 headers: {
                     'Content-type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                credentials: 'include'
             });
             const result = await res.json();
             if(res.ok){

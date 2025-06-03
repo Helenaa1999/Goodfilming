@@ -1,5 +1,5 @@
 ---
-
+const BACKEND_HOST = import.meta.env.BACKEND_HOST;
 ---
 <button class="logInBtn">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="rgb(8, 36, 53)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -10,7 +10,7 @@
 <div class="logInContainer">
 </div>
 
-<script is:inline type="module">
+<script is:inline type="module" define:vars={{ BACKEND_HOST }}>
   document.addEventListener("DOMContentLoaded", ()=>{
     const logInBtn = document.querySelector(".logInBtn");
     const logInContainer = document.querySelector(".logInContainer");
@@ -36,17 +36,15 @@
 
       const logoutBtn = document.getElementById("logoutBtn");
       logoutBtn.addEventListener("click", async (e)=>{
-          
         try{
           //Se llama a la API para realizar la acción
-            const res = await fetch("http://localhost:5000/user/signout", {
+            const res = await fetch(`${BACKEND_HOST}/user/signout`, {
               method: "POST",
               headers: {
                 'Content-type': 'application/json',
                 'Authorization': `Bearer ${token}`
               }
             });
-
             if(res.ok){
               //Se elimina el token y vuelve a la página home
               localStorage.removeItem("token");
@@ -54,6 +52,7 @@
             }else{
               alert("Error para cerrar sesión.")
             }
+
         }catch(error){
           alert("Error de conexión con el servidor.")
         }

@@ -1,5 +1,5 @@
 ---
-
+const BACKEND_HOST = import.meta.env.BACKEND_HOST;
 ---
 
 <h1 class="headingSections">Registrarse:</h1>
@@ -35,14 +35,15 @@
 </article>
 
 
-<script is:inline type="module">
+<script is:inline type="module" define:vars={{ BACKEND_HOST }}>
+    const HOST = import.meta.env.HOST;
     const formulario = document.getElementById("registerForm");
     formulario.addEventListener('submit', async(e)=>{
         e.preventDefault();
         const formData = new FormData(formulario);
         const data = Object.fromEntries(formData.entries());
         try{
-            const res = await fetch("http://localhost:5000/user/signup", {
+            const res = await fetch(`${BACKEND_HOST}/user/signup`, {
                 method : "POST",
                 headers : {
                     'content-type' : 'application/json'

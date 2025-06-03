@@ -1,5 +1,5 @@
 ---
-
+const BACKEND_HOST = import.meta.env.BACKEND_HOST;
 ---
 
 <h1 class="headingSections">¿Deseas modificar tu perfil?</h1>
@@ -34,28 +34,34 @@
     </div>
 </article>
 
-<script is:inline type="module">
+<script is:inline type="module" define:vars={{ BACKEND_HOST }}>
     const formulario = document.getElementById("modifyProfile");
     const errorMessage = document.getElementById("errorMessage");
     const successfulMessage = document.getElementById("successfulMessage");
+    const token = localStorage.getItem("token");
+
+    document.addEventListener("DOMContentLoaded", async(e) =>{
+        //En caso de que no exista el token, es decir, que el usuario no haya iniciado sesión, le redirige a inicio de sesión
+        if(!token){
+            window.location.href="/logInPage";
+        }
+    })
     formulario.addEventListener('submit', async(e) =>{
         e.preventDefault();
         const formData = new FormData(formulario);
         const data = Object.fromEntries(formData.entries());
-        const token = localStorage.getItem("token");
         if(!token){
             errorMessage.textContent = "No se encontró token de autorización. Por favor, inicia sesión.";
             return;
         }
         try{
-            const res = await fetch("http://localhost:5000/user/updateUser", {
+            const res = await fetch(`${BACKEND_HOST}/user/updateUser`, {
                 method: "PUT",
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                    
+                    'Content-Type': 'application/json'       
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
+                credentials: 'include'
             })
             const result = await res.json();
             if(res.ok){
@@ -64,9 +70,8 @@
             }else{
                 errorMessage.textContent = result.message || "Error al actualizar el perfil";
             }
-            
         }catch(error){
-            errorMessage.textContent = result.message || "Error de conexión con el servidor o red"
+            errorMessage.textContent = "Error de conexión con el servidor o red"
         }
     })
 </script>
