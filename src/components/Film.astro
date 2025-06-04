@@ -7,7 +7,7 @@ const {film, class: className} = Astro.props;
 <!--En este archivo se define la estructura de las películas que se mostrarán en apartados como NowPlaying o Popular -->
 <div class={`filmContainer ${className}`}>
     <div class="imgYBtn">
-        <img src={`https://image.tmdb.org/t/p/w200${film.poster_path}`} alt="{peli.title}">
+        <img src={`https://image.tmdb.org/t/p/w200${film.poster_path}`} alt=`${film.title}`>
         <div class="btn">
             <a href={`/pelicula/${film.id}`}><button>VER MÁS</button></a>
         </div>

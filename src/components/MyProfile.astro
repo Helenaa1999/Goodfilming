@@ -1,5 +1,5 @@
 ---
-const BACKEND_HOST = import.meta.env.BACKEND_HOST;
+const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
 ---
 
 <h1 class="headingSections">¿Deseas modificar tu perfil?</h1>
@@ -28,7 +28,7 @@ const BACKEND_HOST = import.meta.env.BACKEND_HOST;
             <input type="password" name="password" id="password" class="password">
         </div>
         <input type="submit" value="Modificar perfil">
-        <p id="successfulMessage" class="succes"></p>
+        <p id="successfulMessage" class="success"></p>
         <p id="errorMessage" class="error"></p>
     </form>
     </div>
@@ -51,7 +51,7 @@ const BACKEND_HOST = import.meta.env.BACKEND_HOST;
         const formData = new FormData(formulario);
         const data = Object.fromEntries(formData.entries());
         if(!token){
-            errorMessage.textContent = "No se encontró token de autorización. Por favor, inicia sesión.";
+            errorMessage.textContent = "Por favor, inicia sesión.";
             return;
         }
         try{

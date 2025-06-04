@@ -515,7 +515,7 @@ body{
     color: var(--white);
 }
 
-/*Estilos películas estrenos al pulsar ver más*/
+/*Estilos películas al pulsar ver más*/
 .heading{
     font-size: 20px;
     padding:0.5rem;
@@ -562,6 +562,25 @@ body{
 .rating:hover{
     background-color: #071f2e;
 }
+
+.btnContainer button{
+    background-color: #082435;
+    width: 30%;
+    padding: 1rem 0;
+    border: 1px #082435 solid;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    align-self: center;
+    margin-top: 1rem;
+}
+.btnContainer button:hover{
+    background-color: white;
+    color: #082435;
+}
+
 iframe{
     margin-left: 20%;
 }
@@ -619,6 +638,9 @@ input[type="submit"]:hover{
 
 .error{
     color: red;
+}
+.success{
+    color: green;
 }
 
 /*Estilos resultados*/
@@ -743,6 +765,9 @@ input[type="submit"]:hover{
         align-items: space-beetween;
     }
 
+    .btnContainer button{
+        width: 40%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -803,6 +828,10 @@ input[type="submit"]:hover{
 
     .filmContainer{
         width: 43%;
+    }
+
+    .btnContainer button{
+        width: 50%;
     }
 
     .carrousel-item{
