@@ -8,7 +8,7 @@ const {filmId} = Astro.props;
     <p id="successfulMessage" class="success"></p>
 </div>
 
-<script type="module" define:vars={{ BACKEND_HOST }}>
+<script is:inline type="module" define:vars={{ BACKEND_HOST }}>
 
 document.addEventListener("DOMContentLoaded", () =>{
     const errorMessage = document.getElementById("errorMessage");

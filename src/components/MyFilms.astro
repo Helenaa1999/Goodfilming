@@ -1,0 +1,72 @@
+---
+const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
+const TMB_API_KEY2 = import.meta.env.TMB_API_KEY2;
+//Llamada a la API the movie
+---
+
+<h1 class="headingSections">Mi wacthlist:</h1>
+<p id="errorMessage" class="error"></p>
+<div id="watchlistContainer"></div>
+
+
+<script is:inline type="module" define:vars={{ BACKEND_HOST , TMB_API_KEY2}}>
+    const errorMessage= document.getElementById("errorMessage");
+    const token = localStorage.getItem("token");
+    const container = document.getElementById("watchlistContainer");
+    if(!token){
+        window.location.href = "/logInPage";
+    }else{
+        (async() => {
+            try{
+                const res = await fetch(`${BACKEND_HOST}/watchlist`, {
+                    method: "GET", 
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    credentials: 'include'
+                });
+                const result = await res.json();
+                if(!res.ok){
+                    errorMessage.textContent = result.message || "Error al mostrar las películas de tu watchlist."
+                    return;
+                }
+                //Aquí se guarda el array con los ids de las películas
+                const ids = result.message;
+                if(ids.length === 0){
+                    container.textContent = "No tienes películas guardadas.";
+                }
+                
+                const fetchFilm = async (id) => {
+                    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMB_API_KEY2}&language=es-ES`, {
+                        headers: {
+                            accept: 'application/json',
+                            Authorization: `Bearer ${TMB_API_KEY2}`
+                        }
+                    });
+                    return await res.json();
+                }
+
+                const films = await Promise.all(ids.map(fetchFilm));
+                console.log("IDs recibidos por el backend: " , ids);
+                container.innerHTML = films.map(film =>
+                    `<div class="filmContainer">
+                        <div class="imgYBtn">
+                            <img src="https://image.tmdb.org/t/p/w200${film.poster_path}" alt=${film.title}>
+                                <div class="btn">
+                                    <a href="/pelicula/${film.id}"><button>VER MÁS</button></a>
+                                </div>
+                        </div>
+                        <p>${film.title}</p>
+                        <div>
+                            <button class="deleteBtn">🗑️ Eliminar de la lista</button>
+                        </div>
+                    </div>`
+                ).join(' ');
+                console.log("Películas recibidas de la API:", films);
+            }catch(error){
+                errorMessage.textContent = result.message || "Error de conexión con el servidor o de red";
+            }
+        })();
+    }
+    
+</script>
