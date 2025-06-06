@@ -1,5 +1,5 @@
 ---
-
+const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
 ---
 <button class="logInBtn">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="rgb(8, 36, 53)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -8,10 +8,9 @@
       </svg>
 </button>
 <div class="logInContainer">
-  <a href="/logInPage">Iniciar sesión</a>
 </div>
 
-<script is:inline>
+<script is:inline type="module" define:vars={{ BACKEND_HOST }}>
   document.addEventListener("DOMContentLoaded", ()=>{
     const logInBtn = document.querySelector(".logInBtn");
     const logInContainer = document.querySelector(".logInContainer");
@@ -27,5 +26,42 @@
         logInContainer.classList.remove("show");
       }
     });
+
+    //Coge el token que está en el navegador y si hay, muestra los "mi perfil" y el botón para cerrar sesión.
+    const token = localStorage.getItem("token");
+    if(token){
+      logInContainer.innerHTML = 
+      `  <a href="/profile">Mi perfil</a>
+      <button id="logoutBtn">Cerrar sesión</button>`;
+
+      const logoutBtn = document.getElementById("logoutBtn");
+      logoutBtn.addEventListener("click", async (e)=>{
+        try{
+          //Se llama a la API para realizar la acción
+            const res = await fetch(`${BACKEND_HOST}/user/signout`, {
+              method: "POST",
+              headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              }
+            });
+            if(res.ok){
+              //Se elimina el token y vuelve a la página home
+              localStorage.removeItem("token");
+              window.location.href = "/";
+            }else{
+              alert("Error para cerrar sesión.")
+            }
+
+        }catch(error){
+          alert("Error de conexión con el servidor.")
+        }
+      }
+      );
+    }else{
+      logInContainer.innerHTML =
+      `<a href="/logInPage">Iniciar sesión</a>` 
+    }
+
   });
 </script>

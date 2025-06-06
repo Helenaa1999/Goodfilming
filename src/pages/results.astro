@@ -32,7 +32,7 @@ if(query?.trim() !== ""){
     <h1>Resultados para "{query}"</h1>
     {results.length > 0 ? (
         <ul>
-            {results.map((result: { title: string; overview: string; poster_path: string; release_date:string | null; }) => (
+            {results.map((result: {title: string; overview: string; poster_path: string; release_date:string | null; }) => (
                 //Esta sería la información que se imprimirá de cada una de las películas
                 <li class="resultFilm">
                     <Film film={result}/>
@@ -40,9 +40,9 @@ if(query?.trim() !== ""){
                         <h2>{result.title}</h2>
                         <p>({result.release_date})</p>
                         <p>{result.overview}</p>   
-                    </div>
-                        
+                    </div>  
                 </li>
+                  
             ))}
         </ul>
         ) : (

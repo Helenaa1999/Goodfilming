@@ -10,6 +10,8 @@ export default defineConfig({
   experimental: {
     session:false
   },
-  
+  vite: {
+    envPrefix: ['BACKEND_HOST']
+  },
   adapter: vercel()
 });

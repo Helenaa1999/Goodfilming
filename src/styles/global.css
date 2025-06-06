@@ -166,12 +166,31 @@ body{
     display: block;
     position: absolute;
     top: 2.8rem;
-    padding: 1.5rem;
     right: 24.8rem;
-    border: var(--almost_black) solid 1px;
-    background-color: #fff;
     width: 10%;
+    display: flex;
+    flex-direction: column;
 }
+
+.logInContainer.show a, 
+.logInContainer.show button{
+    border: #082435 solid 2px;
+    padding: 1.8rem;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    color:var(--almost_black);
+}
+
+.logInContainer.show a:hover, 
+.logInContainer.show button:hover{
+    background-color: #082435;
+    color: white;
+}
+
+
 
 .navbar.scrolled{
     top:0;
@@ -496,7 +515,7 @@ body{
     color: var(--white);
 }
 
-/*Estilos películas estrenos al pulsar ver más*/
+/*Estilos películas al pulsar ver más*/
 .heading{
     font-size: 20px;
     padding:0.5rem;
@@ -543,6 +562,25 @@ body{
 .rating:hover{
     background-color: #071f2e;
 }
+
+.btnContainer button{
+    background-color: #082435;
+    width: 30%;
+    padding: 1rem 0;
+    border: 1px #082435 solid;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    align-self: center;
+    margin-top: 1rem;
+}
+.btnContainer button:hover{
+    background-color: white;
+    color: #082435;
+}
+
 iframe{
     margin-left: 20%;
 }
@@ -559,6 +597,7 @@ iframe{
     border: solid 1px #eee;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin: 1.5rem 0;
 }
 
 .form{
@@ -597,6 +636,13 @@ input[type="submit"]:hover{
     color: #082435;
 }
 
+.error{
+    color: red;
+}
+.success{
+    color: green;
+}
+
 /*Estilos resultados*/
 .resultFilm{
     display: flex;
@@ -612,6 +658,30 @@ input[type="submit"]:hover{
     display: flex;
     flex-direction: column;
     line-height: 1.6;
+}
+
+/*Estilos misPeliculas*/
+#watchlistContainer{
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.deleteBtn {
+    background-color: rgb(185, 64, 64);
+    cursor: pointer;
+    border: 1.5px rgb(185, 64, 64) solid;
+    padding: 1rem 0.5rem;
+    border-radius: 10px;
+    margin: 1rem 0.5rem;
+    font-size: 15px;
+}
+.deleteBtn:hover {
+    background-color: white;
+    cursor: pointer;
+    border: 1px rgb(185, 64, 64) solid;
+    padding: 1rem 0.5rem;
+    border-radius: 10px;
 }
 
 /*Footer*/
@@ -700,15 +770,14 @@ input[type="submit"]:hover{
         flex-direction: row;
         padding: 3rem 20%;
         align-items: space-beetween;
-        width: 100%;
     }
 
+    
     .logInContainer.show{
         display: block !important;
-        top: 100%;
-        padding: 1rem;
-        right: 5%;
-        width: 20%;
+        top: 78%;
+        right: 11%;
+        width: 40%;
     }
 
     .content-section{
@@ -720,6 +789,9 @@ input[type="submit"]:hover{
         align-items: space-beetween;
     }
 
+    .btnContainer button{
+        width: 40%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -756,10 +828,10 @@ input[type="submit"]:hover{
 
     .logInContainer.show{
         display: block !important;
-        top: 100%;
+        top: 89%;
         padding: 1rem;
-        right: 40%;
-        width: 20%;
+        right:34%;
+        width: 60%;
     }
 
     .logInContainer.show a{
@@ -780,6 +852,14 @@ input[type="submit"]:hover{
 
     .filmContainer{
         width: 43%;
+    }
+
+    #watchlistContainer{
+        gap: 0.5rem;
+    }
+
+    .btnContainer button{
+        width: 50%;
     }
 
     .carrousel-item{

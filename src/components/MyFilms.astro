@@ -1,0 +1,110 @@
+---
+const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
+const TMB_API_KEY2 = import.meta.env.TMB_API_KEY2;
+//Llamada a la API the movie
+---
+
+<h1 class="headingSections">Mi wacthlist:</h1>
+<p id="errorMessage" class="error"></p> 
+<div id="watchlistContainer"></div>
+
+
+<script is:inline type="module" define:vars={{ BACKEND_HOST , TMB_API_KEY2}}>
+    const errorMessage= document.getElementById("errorMessage");
+    const token = localStorage.getItem("token");
+    const container = document.getElementById("watchlistContainer");
+    if(!token){
+        window.location.href = "/logInPage";
+    }else{
+        (async() => {
+            try{
+                //Se conecta a la base de datos con un método get para obtener el id de la película
+                const res = await fetch(`${BACKEND_HOST}/watchlist`, {
+                    method: "GET", 
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    credentials: 'include'
+                });
+                const result = await res.json();
+                //En caso de que exista algún error, se muestra este mensaje.
+                if(!res.ok){
+                    errorMessage.textContent = result.message || "Error al mostrar las películas de tu watchlist."
+                    return;
+                }
+                //Aquí se guarda el array con los ids de las películas
+                const ids = result.message;
+                //En caso de que en el array no haya ninguna película guardada, aparecerá ese mensaje.
+                if(ids.length === 0){
+                    container.textContent = "No tienes películas guardadas.";
+                }
+                
+                //Llamada de la api The movie Data base
+                const fetchFilm = async (id) => {
+                    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${TMB_API_KEY2}&language=es-ES`, {
+                        headers: {
+                            accept: 'application/json',
+                            Authorization: `Bearer ${TMB_API_KEY2}`
+                        }
+                    });
+                    return await res.json();
+                }
+                //Recorre el array y añade cada película al html
+                const films = await Promise.all(ids.map(fetchFilm));
+                container.innerHTML = films.map(film =>
+                    `<div class="filmContainer">
+                        <div class="imgYBtn">
+                            <img src="https://image.tmdb.org/t/p/w200${film.poster_path}" alt=${film.title}>
+                                <div class="btn">
+                                    <a href="/pelicula/${film.id}"><button>VER MÁS</button></a>
+                                </div>
+                        </div>
+                        <p>${film.title}</p>
+                        <div>
+                            <button class="deleteBtn" data-id=${film.id}>🗑️ Eliminar de la lista</button>
+                        </div>
+                    </div>`
+                ).join(' ');
+            }catch(error){
+                errorMessage.textContent = result.message || "Error de conexión con el servidor o de red";
+          
+            }
+            //All porque hay varios botones
+            const deleteBtns = document.querySelectorAll(".deleteBtn");
+            //Selecciona todos los botones de eliminar
+            deleteBtns.forEach((button)=>{
+                button.addEventListener("click", async()=>{
+                    //Obtiene los datos del id
+                    const filmId = button.getAttribute("data-id");
+                    //Si no hay token le redirige a logInPage
+                    if(!token){
+                        window.location.href="/logInPage";
+                        return;
+                    }
+                    else{
+                        try{
+                            //Se conecta con la base de datos con un método DELETE para eliminar la película deseada.
+                            const res = await fetch(`${BACKEND_HOST}/watchlist?id_pelicula=${filmId}`, {
+                                method: "DELETE", 
+                                headers: {
+                                    'Authorization': `Bearer ${token}`
+                                },
+                                credentials: 'include'
+                            });
+                            const result = await res.json();
+                            if(!res.ok){
+                                errorMessage.textContent = result.message || "Error. La película no ha podido ser eliminada.";
+                                return;
+                            }
+                            button.closest("div").remove();
+                        }catch(error){
+                            errorMessage.textContent = result.message || "Error de conexión con el servidor o red.";
+                        }
+                    }
+                });
+            })
+        
+        })();
+
+    }
+</script>

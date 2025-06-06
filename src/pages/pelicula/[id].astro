@@ -2,6 +2,7 @@
 //Objeto que contiene valores de segmentos de ruta dinámica que coincidan con esta petición
 import Layout from '../../layouts/Layout.astro';
 import {getVideos} from "../../lib/api/videos.js";
+import BtnSaveFilm from "../../components/BtnSaveFilm.astro";
 export const prerender = false;
 
 const apiKey = import.meta.env.TMDB_API_KEY;
@@ -57,7 +58,9 @@ let vote_averageParaMostrar = Math.round(vote_average*10)/10;
                 <p>Nota media: </p>
                 <p> ⭐ {vote_averageParaMostrar}<strong> / 10</strong></p>
             </div>
-             <!--Añadir para que el usuario evalue y la media de valoraciones de goodfilming -->
+            <div>
+                <BtnSaveFilm filmId={id}/>
+            </div>
         </div>
     </div>
         <!--Estructura para mostrar el trailer -->
