@@ -40,9 +40,11 @@ const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
     const formulario = document.getElementById("registerForm");
     formulario.addEventListener('submit', async(e)=>{
         e.preventDefault();
+        //Se cogen todos los datos del formulario 
         const formData = new FormData(formulario);
         const data = Object.fromEntries(formData.entries());
         try{
+            //Conexión con la base de datos con método post
             const res = await fetch(`${BACKEND_HOST}/user/signup`, {
                 method : "POST",
                 headers : {
@@ -51,6 +53,8 @@ const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
                 body: JSON.stringify(data)
             })
             const result = await res.json();
+            
+            //En caso de que la respuesta sea adecuada, le redirige al home
             if(res.ok){
                 localStorage.setItem('token', result.token);
                 window.location = '/index.astro';

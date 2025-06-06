@@ -21,6 +21,8 @@ const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
         <p>¿No tienes cuenta todavía? <a href="/registerPage">Regístrate</a></p>
     </div>
 </article>
+
+
 <script is:inline type="module" define:vars={{ BACKEND_HOST }}>
     const formulario = document.getElementById("logInForm");
     const errorMessage = document.getElementById("errorMessage");
@@ -31,6 +33,7 @@ const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
         //Cojo los valores y los convierto en un objeto
         const data = Object.fromEntries(formData.entries());
         try{
+            //Conexión con BBDD con un método Post
             const res = await fetch(`${BACKEND_HOST}/user/signin`, {
                 method : "POST",
                 headers: {
@@ -40,10 +43,10 @@ const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
                 credentials: 'include'
             });
             const result = await res.json();
+            //Si la respuesta en ok, se establece el token y redirige al usuario a misPeliculas
             if(res.ok){
                 localStorage.setItem('token', result.token);
                 window.location = '/misPeliculas';
-                console.log(result);
             }else{
                 errorMessage.textContent = result.message || "Error al iniciar sesión";
             }

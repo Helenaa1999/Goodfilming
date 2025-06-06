@@ -9,21 +9,22 @@ const {filmId} = Astro.props;
 </div>
 
 <script is:inline type="module" define:vars={{ BACKEND_HOST }}>
-
+//DOMContentLoaded sirve para que se cargue el Javascript antes de que esté el HTML
 document.addEventListener("DOMContentLoaded", () =>{
     const errorMessage = document.getElementById("errorMessage");
     const successfulMessage = document.getElementById("successfulMessage");
     const token = localStorage.getItem("token");
     const buttons = document.querySelectorAll(".btnSave");
+    //Se realiza un forEach para recorrer todos los botones
     buttons.forEach(button =>{
         button.addEventListener("click", async()=>{
-    
             const filmId = button.dataset.filmId;
             if(!token){
                     window.location.href = "/logInPage";
                     return;
                 }
             try{
+                //Conexión con la base de datos porque se desea añadir una pelicula en la BBDD
                 const res = await fetch(`${BACKEND_HOST}/watchlist?id_pelicula=${filmId}`, {
                     method: "POST",
                     headers: { 
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                     credentials: 'include',
                 });
                 const result = await res.json();
+                //En caso de que la respuesta sea correcta, aparece un mensaje para informar de que la película se ha guardado correctamente
                 if(res.ok){
                     successfulMessage.textContent= "Guardado";
                 }else{

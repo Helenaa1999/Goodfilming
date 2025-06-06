@@ -50,11 +50,13 @@ const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
         e.preventDefault();
         const formData = new FormData(formulario);
         const data = Object.fromEntries(formData.entries());
+        //En caso de que no haya token, le redirige a logInPage
         if(!token){
-            errorMessage.textContent = "Por favor, inicia sesión.";
+            window.location.href = "/logInPage";
             return;
         }
         try{
+            //Conexión con la base de datos con un método PUT para que el usuario pueda actualizar los elementos que desee de su perfil.
             const res = await fetch(`${BACKEND_HOST}/user/updateUser`, {
                 method: "PUT",
                 headers: {
@@ -64,6 +66,7 @@ const BACKEND_HOST = import.meta.env.PUBLIC_BACKEND_HOST;
                 credentials: 'include'
             })
             const result = await res.json();
+            //En caso de que la respuesta sea adecuada
             if(res.ok){
                 localStorage.setItem('token', result.token)
                 successfulMessage.textContent = "Perfil actualizado con éxito."

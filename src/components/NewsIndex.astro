@@ -9,7 +9,8 @@ const news = await getNews();
 <article class="newsIndexContainer">
     <div class="newsGrid">
         {
-            //Se realiza un map para poder mostrar cada una de las noticias
+            //Se realiza un map para poder mostrar cada una de las noticias. 
+            // Slice sirve para que determinar cuántas noticias se quieren mostrar. En este caso máximo 10
             news.slice(0,10).map(newsItem => 
                 <News newsIndividual={newsItem} class="news-item" /> )
         }
