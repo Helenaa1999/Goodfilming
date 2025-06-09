@@ -756,12 +756,13 @@ input[type="submit"]:hover{
     color: var(--hover-blue);
 }
 
-@media(max-width: 2560px){
+@media(max-width: 2560px) and (min-width: 1025px){
     .logInContainer.show{
         display: block !important;
         top: 145%;
         right: 14%;
         width: 20%;
+        flex-direction: row;
     }
 }
 @media(max-width: 1024px){
