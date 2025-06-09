@@ -756,7 +756,14 @@ input[type="submit"]:hover{
     color: var(--hover-blue);
 }
 
-
+@media(max-width: 2560px){
+    .logInContainer.show{
+        display: block !important;
+        top: 145%;
+        right: 14%;
+        width: 20%;
+    }
+}
 @media(max-width: 1024px){
     .filmContainer{
         display: flex;
@@ -775,9 +782,9 @@ input[type="submit"]:hover{
     
     .logInContainer.show{
         display: block !important;
-        top: 78%;
-        right: 11%;
-        width: 40%;
+        top: 120%;
+        right: 16%;
+        width: 20%;
     }
 
     .content-section{
