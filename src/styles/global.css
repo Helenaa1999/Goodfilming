@@ -762,7 +762,7 @@ input[type="submit"]:hover{
         top: 145%;
         right: 14%;
         width: 20%;
-        flex-direction: row;
+        flex-direction: row !important;
     }
 }
 @media(max-width: 1024px){
